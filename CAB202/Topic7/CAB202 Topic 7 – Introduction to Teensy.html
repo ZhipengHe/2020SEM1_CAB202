@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<!-- saved from url=(0133)https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>CAB202 Topic 7 – Introduction to Teensy</title>
+
+	<script type="text/javascript" src="./CAB202 Topic 7 – Introduction to Teensy_files/syntaxhighlighter.js.&#19979;&#36733;"></script>
+	<link type="text/css" rel="stylesheet" href="./CAB202 Topic 7 – Introduction to Teensy_files/theme.css">
+
+	<style type="text/css">
+		
+			body {
+				max-width: 50em;
+				/* font-family: sans-serif; */
+				margin: auto;
+				line-height: 1.4em;
+				background-color: #F1F1F1;
+			}
+		
+
+		.indent {
+			margin-left: 0.6cm;
+		}
+
+		.codeblock {
+			font-size: +1;
+			font-family: monospace;
+			font-weight: bold;
+			background-color: #303030;
+			color: #dcdcdc;
+			/* font-size: large; */
+		}
+
+		.codeDiv {
+			overflow: scroll;
+			border: 1px solid gray;
+		}
+
+		pre {
+			border: 1px solid gray;
+			padding: 6pt;
+			width: 100%;
+		}
+
+		textarea {
+			margin-top: 6pt;
+		}
+
+		td {
+			/* width: 4in; */
+			vertical-align: top;
+		}
+
+		code {
+			font-size: medium;
+			font-weight: bold;
+		}
+
+		li {
+			margin-bottom: 6pt;
+		}
+
+		li ul {
+			margin-top: 6pt;
+		}
+
+		.section {
+			margin-left: 0.6cm;
+		}
+
+		.subsection {
+			margin-left: 0.6cm;
+		}
+
+		span.li  {display: list-item; margin-left: 0.6cm}
+
+		span.li2  {display: list-item; margin-left: 1.2cm}
+
+		td.truth_table { text-align: center; width: 1cm; vertical-align: middle; }
+
+		div.truth_table_container { display: inline-block; width: 5.5cm; vertical-align: top; text-align: center; }
+		td.truth_value { background-color: #dddddd; }
+
+		.sc0 {
+	}
+	.sc2 {
+		color: #1E9AE0;
+	}
+	.sc4 {
+		color: #FF3A83;
+	}
+	.sc5 {
+		color: #F6F080;
+	}
+	.sc6 {
+		color: #55E439;
+	}
+	.sc9 {
+		color: cyan;
+	}
+	.sc10 {
+		color: #FFAA00;
+	}
+	.sc11 {
+		color: #F8F8F8;
+	}
+	.sc16 {
+		color: #FFAA00;
+	}
+	</style>
+</head><body>
+<h1 class="document_title">CAB202 Topic 7 – Introduction to Microcontrollers</h1>
+<p>Luis Mejias, Lawrence Buckingham. Queensland University of Technology.</p>
+	
+    <h2><a name="_contents">Contents</a></h2>
+    
+  <ul>
+      <li> 
+  <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#1" title="0">References</a>  </li>
+    
+      <li> 
+  <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#2" title="1">What’s an Atmega328P?</a>  </li>
+    
+      <li> 
+  <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#3" title="2">QUT Microocntroller Development Environment</a>  </li>
+      <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#4">Electrical Connections</a></li>
+    
+      <li> 
+  <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#5" title="3">First Program on the Teensy</a>
+  
+      
+  
+  
+      <ul>
+          <li>
+    
+  <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#6" title="4">Get things set up</a>          </li>
+          
+          <li>
+    
+  <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#7" title="5">Create (or in some other way get) a <code>C</code> source file</a></li>
+          </ul>
+    </li>
+    
+      <li> 
+        <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#8" title="10">Digital Input and Output</a>
+        
+        
+        
+        
+        <ul>
+          <li>
+            
+          <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#9" title="11">Setting, Clearing, and Reading Bits</a>          </li>
+          
+          <li>
+            
+          <a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#10" title="12">Digital Input/Output: Turn on/off LEDs using switches</a>          </li>
+        </ul>
+    </li>
+      <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#12">Summary</a></li>
+</ul>
+
+	
+	
+	<hr>
+	<h2><a name="0"></a>Roadmap</h2>
+	<blockquote>
+	  <p>	This week:</p>
+	  <blockquote>
+	    <p><strong>7. AVR ATMega328P. Introduction to Microcontrollers; Digital Input/Output.</strong></p>
+      </blockquote>
+	  <p>	    Still to come:</p>
+	  <blockquote>
+	    <p>8. Serial Communication. communicating with another microcontroller or computer.         </p>
+	    <p>9. Debouncing, Timers and Interrupts. asynchronous programming.	    </p>
+	    <p>10. Analogue to Digital Conversion; Pulse Width Modulation. </p>
+	    <p>11. LCD Display. sending digital signals to a device; directly controlling the LCD display. </p>
+	  </blockquote>
+	  </blockquote>
+	<hr>
+	
+  
+
+    
+    
+
+      
+		
+
+    
+
+    
+		<h2><a name="1" id="1"></a>References</h2>
+    <div class="section">
+		<p>Recommended reading:</p>
+
+		<ul><li><a href="http://libcat.library.qut.edu.au/search~S8?/aOualline%2C+Steve%2C/aoualline+steve/-3%2C-1%2C0%2CB/exact&amp;FF=aoualline+steve&amp;1%2C5%2C" target="_blank"> Practical C Programming, Chapter 11 Bit Operators</a></li>
+</ul>
+	</div>
+    <hr>
+	
+  
+
+    
+    
+
+      
+		
+
+    
+
+    
+		<h2><a name="2" id="2"></a>What’s an Atmega328P?</h2>
+    <div class="section">
+		<p>According to the manufacturer's web site, an ATMega328P is a "<em>is a low power, CMOS 8-bit microcontrollers based <br>
+	    on the AVR enhanced RISC architecture</em>".</p><ul>
+	      <li><a href="https://www.pjrc.com/teensy/" target="_blank">http://www.microchip.com/</a></li>
+</ul><p></p>
+<p>AVR microcontrollers are used in many host boards (or development board) such as Arduino and Teensy. These two are the most widely used, they are packed in such a way that provide  integrated USB connector for power and serial communication and wifi, among others.</p>
+<p>Example board is Teensy 2.0 with an Atmega32U4:
+			<br>
+			
+    
+    <img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig1.jpg" width="406" height="228" alt=" Teensy 2 image from www.PJRC.com ">
+			<br>
+	  The dark grey square in the middle of the board is an ATMega32U4 microcontroller.</p>
+<p>Another example is the Arduino uno with an Atmega328P:</p>
+<p><img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig2.jpg" width="520" height="330" alt=""></p>
+<p>The dark grey square chip at the bottom right of the board is an <strong>ATMega328P</strong> microcontroller.</p>
+<p>A microcontroller is a small computer with multiple components integrated into a single chip. It includes:
+	  </p><ul><li>A microprocessor (CPU) containing: arithmetic and logic unit (ALU); program control system which fetches, decodes and executes instructions; and a bank of registers in which the ALU carries out operations.</li>
+<li>Memory: Flash storage which holds the program; EEPROM (electrically erasable programmable read-only memory); and RAM.</li>
+<li>Clock(s)</li>
+<li>Data connections: digital; analogue; network; memory cards.		</li>
+
+  
+  
+  <img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig3.png" width="400" height="383" alt=" Generic microcontroller block diagram ">
+      </ul>
+	  <p></p>
+
+</div>
+    <hr>
+	
+  
+
+    
+    
+
+      
+		
+
+    
+
+    
+		<h2><a name="3" id="3"></a>QUT Microncontroller Development Environment</h2>
+    <div class="section">
+	  <p>CAB202 makes use of <a href="https://www.tinkercad.com/" target="new">Autodesk TinkerCad </a>to create circuits using microncontrollers, program them and simulate their behaviour. This environment allows you to make use of range of electronics components to create many projects.</p>
+	  <p>TinkerCad has many features such as 3D CAD, CodeBlocks and Circuits. In CAB202, we will specifically make use of <strong>Circuits</strong>. The figure below shows a typical session using circuits. A microcontroller, few electrical components and a breadboard a being used to perform a specific task. This project can be simulated once the microcontroller is programmed using the code tab.</p>
+<p><img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig4.png" width="760" height="438" alt=""></p>
+<p>A program will look like this:</p>
+<p>&nbsp;</p>
+<p><img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig5.png" width="777" height="502" alt=""></p>
+<h3>About Breadboards</h3>
+<p>Breadboards are reusable (do not require soldering) prototyping devices that allow creating circuits. On the breadboard, rows and column are connected.</p>
+<table width="200" border="0">
+  <tbody>
+    <tr>
+      <th scope="col"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig6.png" width="308" height="610" alt=""></th>
+      <td scope="col"><p>Columns inside Red and Blue lines are connected vertically, except where visible gaps exists</p>
+        <p>&nbsp;</p>
+        <p>Rows in the middle with letters at the top are connected horizontally</p></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig7.png" width="450" height="733" alt=""></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<h2>The microntroller chip: ATMega328P</h2>
+<p>The ATMega328P chip has three 8-pin digital IO ports.
+	  </p><ul>
+<li>Ports B, D, and C.</li>
+<li>Each port has 8 data pins, which map to a bank of 8-bit storage locations in RAM.</li>
+<li>Each port is bidirectional: input or output.</li>
+<li>Each pin within a port is independently configurable as either input or output.
+				<ul><li>How they are configured depends on the hardware they are connected to.</li>
+	  </ul>
+</li>
+	  </ul>
+	  <p>Rigorous definitions of pin assignments, memory addresses, and programming notes are covered in the <strong>ATMega328P </strong>Data Sheet. 
+	  </p><ul><li><a target="_blank" href="https://blackboard.qut.edu.au/webapps/blackboard/content/listContentEditable.jsp?content_id=_8394190_1&amp;course_id=_148969_1">Microcontroller Resources on Blackboard </a></li>
+	  </ul>
+	  <p>You can also see pin assignments in the following chart. Note this is an ATMega328P used in the Arduino UNO host board.	And the pin used</p>
+	  <p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/fig8.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/fig8.png" width="771" height="438" alt=""></a></p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+    </div>
+    <hr>
+<h2><a name="4" id="4"></a>Electrical Connections</h2>
+<div class="section">
+  <p>Connecting sensors and peripharals to the microcontroller ports requires in most cases additional components. Resistors, capacitors and transistors are common components used to connect LEDs, switches, speakers, potensiometers, etc. There are several reasons to use these components, for instance to ensure pin states  are defined (an unconnected pin could adopt an unknown state) or  to limit the amount of current drawn from the microcontroller's port among others. </p>
+  <p>Common symbols for some of these components are:</p>
+  <table width="868" border="1" cellpadding="1" cellspacing="1">
+    <tbody>
+      <tr>
+        <th width="300" scope="col">Resistors</th>
+        <th width="230" scope="col">Capacitors</th>
+      </tr>
+      <tr>
+        <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/R.png" width="162" height="43" alt=""></td>
+        <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/C2.png" width="179" height="95" alt=""></td>
+      </tr>
+      <tr>
+        <td><p>the value underneath is called electrical resistance and is meaured in ohms.</p>
+        <p>The resistance value is defined using a color-coded convention.</p>
+        <p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/RColor.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/RColor.png" width="390" height="311" alt=""></a></p>
+        <p>Explanation of color coding can be found <a href="https://learn.sparkfun.com/tutorials/resistors?_ga=2.139614451.1155111377.1584685041-1350141659.1584685041" target="new">here.</a></p>
+        </td><td><p>The symbol with the curved line (C2)  indicates that the capacitor is polarized. Each capacitor should accompanied by a name -- C1, C2, etc.</p>
+        <p>The value should indicate the capacitance of the capacitor; how many farads it has. This is how much charge it can store.</p></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th><strong>Diodes and LEDs (light emitting diones)</strong></th>
+        <th><strong>Switches</strong></th>
+      </tr>
+      <tr>
+        <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/D1.png" width="254" height="99" alt=""></td>
+        <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/switch1.gif" width="200" height="196" alt=""></td>
+      </tr>
+      <tr>
+        <td><p>Diodes are devices used to control the direction of current-flow. Current can only go in one direction, called the forward direction (left figure below). Current trying to flow the reverse direction is block (right figure below).
+          </p>
+          <p><img src="./CAB202 Topic 7 – Introduction to Teensy_files/D2.png" width="300" height="221" alt=""></p>
+        <p>&nbsp;</p>
+        <p>LEDs are the flashiest member of the diode family. These diodes quite literally light up when a positive voltage is applied. Direction of current is important (diode above).</p>
+        <p><img src="./CAB202 Topic 7 – Introduction to Teensy_files/D3.png" width="200" height="228" alt=""></p></td>
+        <td><p>Switches are componets that allow to close or open an electric circuit. In particular, we are interested in push buttons or push switches. Another term used is momentary switches. Depending on the connections switches can provide the capabiility to provide a TTL logic '1' (5 volts) or '0' (less than 0.8 volts) to a given port of the microcontroller as shown below.</p>
+          <p><img src="./CAB202 Topic 7 – Introduction to Teensy_files/switch2.png" width="430" height="290" alt=""></p>
+        <p>In this example, everytime the push button is pressed a '1' is input to the port, otherwise is '0'.</p></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <th>Transistor</th>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/T.png" width="320" height="142" alt=""></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td><p>They're critical as a control source in just about every modern circuit, they're hidden deep within integrated circuits. The most common transistor around is the bi-polar junction transistor (BJT). </p>
+          <p>The pins are labelled collector (C), base (B) and emitter (E). </p>
+          <p>Transistors are built by stacking three different layers of semiconductor material together. A semiconductor material with extra electrons is called an n-type (n for negative because electrons have a negative charge) and a material with electrons removed is called a p-type (for positive). Transistors are created by either stacking an n on top of p on top on an n, or p over n over p.</p>
+        <p>&nbsp;</p></td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Image sources: <a target="_blank" href="http://www.sparkfun.com/">www.sparkfun.com </a></p>
+  <p>&nbsp;</p>
+</div>
+<hr>
+<div class="section">
+  
+  
+  
+</div>
+
+		<h2><a name="5" id="5"></a>First Program on the ATMega328P</h2>
+<div class="section">
+		
+    
+  <h3><a name="6" id="6"></a>Get things set up</h3>
+    <div class="subsection">
+			<ol>
+<li>Go to <a target="_blank" href="https://www.tinkercad.com/">https://www.tinkercad.com</a> and create an account. You will be using TinkerCAD circuits in CAB202.</li>
+<li>Create local copies (in your workdspace) of the examples shared below. </li>
+<li>Modify your local copies to practice your programing skills.</li>
+</ol>
+  </div> 
+
+		
+  
+		
+		
+		
+
+    
+		<h3><a name="7" id="7"></a>Create (or in some other way get) a <code>C</code> source file. Example 1</h3>
+    <div class="subsection">
+			<p>Several example programs are provided in the present document. The following example <code>turn_on_led.c</code> turn on a LED connected to port B pin 4.</p>
+<p><em>You will include the lines #include&lt;avr/io.h&gt;  in the start-up code of every program you write</em>. This is required to use some macro definitions for ports, pins, etc.</p>
+<p>&nbsp;</p>
+
+			<pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 100%;"><span class="sc10">
+/* File: turn_on_led.c<br> * Description: C program for the ATMEL AVR microcontroller (ATmega328 chip)<br> * Turn on LED <br> * <br> * Includes (pretty much compulsory for using the Teensy this semester)<br> * 	- avr/io.h: port and pin definitions (i.e. DDRB, PORTB, PB1, etc)<br> *<br> */
+// AVR header file for all registers/pins
+
+</span><span class="sc2">#include </span><span class="sc4">&lt;avr/io.h&gt; </span><span class="sc10">
+</span>
+
+<span class="sc9">int</span> <span class="sc11">main</span>(<span class="sc10">void</span>) {
+
+	/<span class="sc16">/ LED 0 is connected to pin B4 (port B)<br>	// set PORTB pin 4 for output</span><br>	<span class="sc11">DDRB=</span><span class="sc4">0b00010000</span><span class="sc11">;</span><br>	<br>   <span class="sc16">// turn ON LEDs by sending '1' to pin 4</span><br>	<span class="sc11">PORTB=</span><span class="sc4">0b00010000</span><span class="sc11">;</span>
+<br>	<span class="sc2">return</span><span class="sc11"> </span><span class="sc4">0</span><span class="sc11">;</span>
+
+}
+
+<span class="sc16">
+/************************************/
+// version using bit shift</span>
+
+
+<span class="sc2">#include </span><span class="sc4">&lt;avr/io.h&gt; </span><span class="sc10">
+</span>
+
+<span class="sc9">int</span> <span class="sc11">main</span>(<span class="sc10">void</span>) {
+
+	/<span class="sc16">/ LED 0 is connected to pin B4 (port B)<br>	// set PORTB pin 4 for output</span><br>	<span class="sc11">DDRB =</span><span class="sc4"> 1</span><span class="sc11"> &lt;&lt; PINB4;</span><br>	<br>   <span class="sc16">// turn ON LEDs by sending '1' to pin 4</span><br>	<span class="sc11">PORTB = </span><span class="sc4">1</span><span class="sc11"> &lt;&lt; PINB4;</span>
+<br>	<span class="sc2">return</span><span class="sc11"> </span><span class="sc4">0</span><span class="sc11">;</span>
+
+}
+
+            </pre>
+      <p>Since we are building the circuit and writing a program for it. We need to start with the schematic of the circuit. Schematics are our maps, they  define how devices are connected to each microcontroller pin. The schematic and physical connections for this program will be as follows:</p>
+      <table width="200" border="1">
+        <tbody>
+          <tr>
+            <th scope="col">Schematics</th>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">&nbsp;</th>
+          </tr>
+          <tr>
+            <td><img src="./CAB202 Topic 7 – Introduction to Teensy_files/ex1a.png" width="354" height="157" alt=""></td>
+            <td><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/ex1b.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/ex1b.png" width="428" height="271" alt=""></a></td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <th>Physical connection</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr>
+            <th><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/ex1d.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/ex1d.png" width="489" height="330" alt=""></a></th>
+            <th><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/ex1c.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/ex1c.png" width="490" height="343" alt=""></a></th>
+            <th>&nbsp;</th>
+          </tr>
+        </tbody>
+      </table>
+      <p>&nbsp;</p>
+      <p><strong>TinkerCad version of the example:</strong> </p>
+      <p><a target="_blank" href="https://www.tinkercad.com/things/1eDqFZv2cRG">https://www.tinkercad.com/things/1eDqFZv2cRG</a></p>
+  </div> 
+
+		
+  
+		
+		
+		
+
+    
+		<h3>&nbsp;</h3>
+</div>
+<hr>
+	
+  
+
+    
+    
+
+      
+		
+
+    
+
+    
+		<h2><a name="8" id="8"></a>Digital Input and Output		</h2>
+		<h3><a name="9" id="9"></a>Setting, Clearing, and Reading Bits</h3>
+<div class="subsection">
+			<p>We saw earlier that the 8-pin physical IO ports are connected to memory locations, and that each pin can be independently configured as input or output.</p>
+<p>Each physical IO port maps to a set of three bytes in RAM. These locations are called I/O Registers.</p>
+<p>Consider port B:
+  </p><ul>
+<li>We use a variable called <code>DDRB,</code> the <em>data direction register,</em> to specify whether each physical pin is to be used as input or output.</li>
+<li>We use a variable called <code>PORTB,</code>the <em>output register</em> for port B, to send data to the physical pins that are configured for output.</li>
+<li>We use a variable called <code>PINB,</code>the <em>input register</em> for port B, to get signals from physical pins that are configured for input.</li>
+<li>NB: <code>PORTB</code> <em>is not a port</em>, it is a register. <code>PINB</code> <em>is not a pin</em>, it is a register.</li>
+  </ul>
+	  <p>Similarly for ports C and D, we have (<code>DDRC</code>, <code>PORTC</code>, <code>PINC</code>) and (<code>DDRD</code>, <code>PORTD</code>, <code>PIND</code>).</p>
+<p>To configure physical pin <em>i</em> of port B as an <strong><em>output</em></strong>, we <em>set</em> bit <em>i</em> of <code>DDRB</code> (that is, we make that bit have a value of 1). Here <em>i</em> is between 0 and 7 inclusive.	  </p>
+<ul>
+<li>The following are helpful macros that can be used to set/clear/read bits in a given register.</li>
+<li>For example, use <code>SET_BIT(DDRB,&nbsp;i)</code> to set bit <em>i</em> of the <code>DDRB</code> register.</li>
+<li><code>SET_BIT</code> works with any register.</li>
+</ul>
+<p>To configure physical pin <em>i</em> of port B as an <strong><em>input</em></strong>, we <em>clear</em> bit <em>i</em> of <code>DDRB</code> (making it have a value of 0). 
+  </p><ul><li>Use <code>CLEAR_BIT(DDRB,&nbsp;i)</code> to clear bit <em>i</em> of the <code>DDRB</code> register.</li>
+<li><code>CLEAR_BIT</code> works with any register.</li>
+</ul><p></p>
+<p>To switch on pin <em>i</em> of port B when configured for output, we set bit <em>i</em> of <code>PORTB</code>.
+  </p><ul><li><code>SET_BIT(PORTB,&nbsp;i)</code> will do this.
+</li>
+  </ul>
+	  <p>To read the value of pin <em>i</em> of port B when configured for input, we must extract bit <em>i</em> from <code>PINB</code>.
+	  </p><ul><li><code>BIT_VALUE(PINB,&nbsp;i)</code> gets the status of the physical pin.</li>
+<li><code>BIT_IS_SET(PINB,&nbsp;i)</code> asks the question: <em>Is bit i of register <code>PINB</code> set?</em> This is usually more useful.</li>
+</ul>
+			
+			<p></p>The following macro definitions can be added at the top of your code.
+		    <div class="subsection">
+		  <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 100%;"><span class="sc10">
+<br>/* <br> *  Setting data directions in a data direction register (DDR)<br> */</span><span class="sc11">
+
+</span><span class="sc16">/*<br> *  Setting, clearing, and reading bits in registers.<br> *  reg is the name of a register; pin is the index (0..7)<br> *  of the bit to set, clear or read.<br> *  (WRITE_BIT is a combination of CLEAR_BIT &amp; SET_BIT)<br> */</span><span class="sc10">
+</span>
+<span class="sc2">#define</span><span class="sc11"> SET_BIT(reg, pin)			(reg) |= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))
+</span><span class="sc2">#define</span><span class="sc11"> CLEAR_BIT(reg, pin)			(reg) &amp;= ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))
+</span><span class="sc2">#define</span><span class="sc11"> WRITE_BIT(reg, pin, value)	(reg) = (((reg) &amp; ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))) | ((value) &lt;&lt; (pin)))
+</span><span class="sc2">#define</span><span class="sc11"> BIT_VALUE(reg, pin)			(((reg) &gt;&gt; (pin)) &amp; </span><span class="sc4">1</span><span class="sc11">)
+</span><span class="sc2">#define</span><span class="sc11"> BIT_IS_SET(reg, pin)		(BIT_VALUE((reg),(pin))==</span><span class="sc4">1</span><span class="sc11">)
+</span>
+        
+          </pre>
+  </div>
+
+		
+  
+		
+		
+		
+
+    
+		<h3><a name="10" id="10"></a>Digital Input and Output: Turn on/off LEDs using switches</h3>
+    <div class="subsection">
+			<p>In this exercise, we extend on the previous exercice <span class="sc0"><strong>turn_on_off_led.c</strong></span> to turn on and off several LEDs using switches. To do this, we need to:
+	  </p><ul>
+<li>Find out which pins the LEDs are connected to.</li>
+<li>Configure these pins as an output so we can turn the LED on/off.</li>
+<li>Find out where the switch(es) will be connected.</li>
+<li>Configure this pin(s) as input(s)	  </li>
+	  </ul>
+	  <p><a name="11" id="11"></a></p>
+	  <p>Specifications:</p>
+	  <ul>
+	    <li>Red LED should be connected to Port B pin 5 (B5).</li>
+	    <li>Green LED should be connected to Port B pin 4 (B4).</li>
+	    <li>Switch 1 should be connected to Port D pin 6 (D6)</li>
+	    <li>Switch 2 should be connected to Port D pin 7 (D7).</li>
+      </ul>
+	  <p>Looking at the specifications above, the schematics would look like this:</p>
+	  <p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/ex2.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/ex2.png" width="489" height="330" alt=""></a></p>
+	  <p>The implementation in TinkerCad should look like:</p>
+	  <p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Files/sources/ex2a.png" target="new"><img src="./CAB202 Topic 7 – Introduction to Teensy_files/ex2a.png" width="596" height="489" alt=""></a></p>
+	  <p>&nbsp;</p>
+	  <p>The next step is to write the program using the specification above. We now the Red LED is  connected to  B5, therefore we need to set bit 5 of DDRB to configure it as output. Similarly, for B4. </p>
+	  <p>We will also need to set bit 4 and 5 of PORTB to turn then on, and clear then for turn them off.</p>
+	  <p><strong>Digital Input: Read switches</strong></p>
+	  <p>To do this, we must determine what pin each of the switch is connected to (<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394133-dt-content-rid-30967806_1/courses/CAB202_20se1/Topic07/CAB202-Topic07-Notes.html#13">see specifications above</a>). To set D6 and D7 as inputs, we will have to clear bits 6 and 7 of <code>DDRD</code>.</p>
+      <p>In the process phase or main execution, we must ask if each button is pressed, and if so, turn the light on or off. This can be done with <code>BIT_IS_SET</code>.</p>
+      <p>&nbsp;</p>
+      <p><strong>Final program: Example 2</strong></p>
+      <p>The final version of the program can be seen below. The program, <code>turn_on_off_led.c</code> will turn on/off  LEDs every time a switch is pressed.</p>
+
+	  <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 100%;"><span class="sc16">
+
+/* File: turn_on_off_led.c<br> * Description: C program for the ATMEL AVR microcontroller (ATmega32 chip)<br> * Turn on Teensy LED <br> * <br> * Includes (pretty much compulsory for using the Teensy this semester)<br> * 	- avr/io.h: port and pin definitions (i.e. DDRB, PORTB, PB1, etc)<br> *<br> */
+</span>
+
+<span class="sc16">// AVR header file for all registers/pins</span><br><span class="sc2">#include </span><span class="sc4">&lt;avr/io.h&gt; </span><span class="sc16">/*<br> *  Setting data directions in a data direction register (DDR)<br> *<br> *<br> *  Setting, clearing, and reading bits in registers.<br> *	reg is the name of a register; pin is the index (0..7)<br> *  of the bit to set, clear or read.<br> *  (WRITE_BIT is a combination of CLEAR_BIT &amp; SET_BIT)<br> */</span>
+
+<span class="sc2">#define</span><span class="sc11"> SET_BIT(reg, pin)			(reg) |= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br><span class="sc2">#define</span> CLEAR_BIT(reg, pin)			(reg) &amp;= ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br><span class="sc2">#define</span> WRITE_BIT(reg, pin, value)	(reg) = (((reg) &amp; ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))) | ((value) &lt;&lt; (pin)))<br><span class="sc2">#define</span> BIT_VALUE(reg, pin)			(((reg) &gt;&gt; (pin)) &amp; </span><span class="sc4">1</span><span class="sc11">)<br><span class="sc2">#define</span> BIT_IS_SET(reg, pin)		(BIT_VALUE((reg),(pin))==</span><span class="sc4">1</span><span class="sc11">)
+</span>
+/<span class="sc16">/perform all the operation to setup registers, configure pins, <br>//and setup timers</span><br><span class="sc2">void </span><span class="sc11">setup()</span> <span class="sc11">{</span>
+<span class="sc16">
+// Set Output B5 and B4</span><br><span class="sc11">	SET_BIT(DDRB, </span><span class="sc4">5</span><span class="sc11">); </span><span class="sc16">// RED led</span><span class="sc11"><br>    SET_BIT(DDRB, </span><span class="sc4">4</span><span class="sc11">); </span><span class="sc16">// GREEN led</span>
+<span class="sc16">// Input from the left and right buttons</span><br>	<span class="sc11">CLEAR_BIT(DDRD, </span><span class="sc4">6</span><span class="sc11">); </span><span class="sc16">// right (switch 1)</span><span class="sc11"><br>	CLEAR_BIT(DDRD, </span><span class="sc4">7</span><span class="sc11">); </span><span class="sc16">// left (switch 2)</span>
+
+<span class="sc11">}</span>
+<span class="sc16">
+//this is the fucntion that is executed every loop iteration and contains <br>//the main operation the program is intended to do
+</span>
+<span class="sc2">void</span> <span class="sc11">process</span>() {<br>	<span class="sc16">// If right button is pressed, Turn on RED LED.</span><br>	<span class="sc2">if</span> <span class="sc11">( BIT_IS_SET(PIND, </span><span class="sc4">6</span><span class="sc11">) ) {</span><br>		<span class="sc11">SET_BIT(PORTB, </span><span class="sc4">4</span><span class="sc11">);</span> <span class="sc16">// turn on green led</span><br>        <span class="sc11">CLEAR_BIT(PORTB,</span><span class="sc4">5</span><span class="sc11">);</span> <span class="sc16">// turn off red led</span><br>	}
+
+	<span class="sc16">// Otherwise, if left button is pressed, turn on GREEN LED.</span><br>	<span class="sc2">else</span> <span class="sc2">if</span> <span class="sc11">( BIT_IS_SET(PIND, </span><span class="sc4">7</span><span class="sc11">) ) {</span><br>		<span class="sc11"> SET_BIT(PORTB, </span><span class="sc4">5</span><span class="sc11">);</span>   <span class="sc16">// turn on red led</span><br>         <span class="sc11">CLEAR_BIT(PORTB,</span><span class="sc4">4</span><span class="sc11">);</span> <span class="sc16">// turn off green led</span><br>	}<br>}
+<span class="sc2">int</span> <span class="sc11">main</span>(<span class="sc2">void</span>) {
+	<span class="sc16">//setup avr</span><br>	<span class="sc11">setup</span>();
+	<span class="sc16">//main loop</span> <br>	<span class="sc2">for</span> ( ;; ) {<br>		<span class="sc11">process();</span>
+
+    }
+}
+
+</pre>
+      <p>&nbsp;</p>
+      <p><strong>TinkerCad version of the example:</strong></p>
+      <p><a target="_blank" href="https://www.tinkercad.com/things/4JRPoQcKT6K">https://www.tinkercad.com/things/4JRPoQcKT6K </a></p>
+      <p>&nbsp;</p>
+      <h2><strong>Additional exercices</strong>:      </h2>
+      <ul>
+        <li>Modify the above programs to replace the macro function definitons by bit shift operations.</li>
+        <li>Given a program, wire the circuit to flash an LED based on the steps coded in the file. Copy the TinkedCad project and create your own. <a target="_blank" href="https://www.tinkercad.com/things/gpu8bCxtl2Y">https://www.tinkercad.com/things/gpu8bCxtl2Y</a></li>
+        <li>Given a circuit, write a microcontroller program to flash LEDs sequentially at approximately 1Hz. Copy the TinkerCad project and create your own. <a target="_blank" href="https://www.tinkercad.com/things/kBPk9wCXZyw">https://www.tinkercad.com/things/kBPk9wCXZyw</a></li>
+      </ul>
+      <p>&nbsp;</p>
+  </div>
+
+		
+  
+		
+		
+		
+
+    
+		<h3>&nbsp;</h3>
+    <div class="subsection">
+			<h2><strong><a name="12" id="112"></a>Summary</strong>:</h2>
+            <ul>
+              <li>Microcontrollers provide a convenient way for workking with digital systems. They are self contained (i.e CPU, RAM, ROM, I/O ports and timers) in a single chip what makes them ideal for embedded systems.</li>
+              <li>Given the bi-directional nature of many microcontroller ports, they need to be configured either as input or output. When configured as outputs, they can activate devices, i.e, send electrical signals to devices or components. When configured as inputs, they can read states or electrical signals emited by devices, sensors or components.</li>
+              <li>We will make use of TinkedCad to design projects and program microcontrollers. This tools allow seamless transiktion from a virtual environemnt to a real hardware implememntation.</li>
+      </ul>
+			<p>&nbsp;</p>
+    </div>
+	</div>
+    <hr>
+
+	<p style="text-align:center"><em>The End</em></p>
+	<hr>
+
+
+</body></html>

@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<!-- saved from url=(0133)https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>CAB202 Topic 10 – Analog to Digital and Pulse-Width Modulation</title>
+
+	<style type="text/css">
+		
+			body {
+				max-width: 50em;
+				/* font-family: sans-serif; */
+				margin: auto;
+				line-height: 1.4em;
+				background-color: #F1F1F1;
+			}
+		
+
+		.indent {
+			margin-left: 0.6cm;
+		}
+
+		.codeblock {
+			font-size: +1;
+			font-family: monospace;
+			font-weight: bold;
+			background-color: #303030;
+			color: #dcdcdc;
+			/* font-size: large; */
+		}
+
+		.codeDiv {
+			overflow: scroll;
+			border: 1px solid gray;
+		}
+
+		pre {
+			border: 1px solid gray;
+			padding: 6pt;
+			width: 100%;
+		}
+
+		textarea {
+			margin-top: 6pt;
+		}
+
+		td {
+			/* width: 4in; */
+			vertical-align: top;
+		}
+
+		code {
+			font-size: medium;
+			font-weight: bold;
+		}
+
+		li {
+			margin-bottom: 6pt;
+		}
+
+		li ul {
+			margin-top: 6pt;
+		}
+
+		.section {
+			margin-left: 0.6cm;
+		}
+
+		.subsection {
+			margin-left: 0.6cm;
+		}
+
+		span.li  {display: list-item; margin-left: 0.6cm}
+
+		span.li2  {display: list-item; margin-left: 1.2cm}
+
+		td.truth_table { text-align: center; width: 1cm; vertical-align: middle; }
+
+		div.truth_table_container { display: inline-block; width: 5.5cm; vertical-align: top; text-align: center; }
+		td.truth_value { background-color: #dddddd; }
+
+		.sc0 {
+	}
+	.sc2 {
+		color: #1E9AE0;
+	}
+	.sc4 {
+		color: #FF3A83;
+	}
+	.sc5 {
+		color: #F6F080;
+	}
+	.sc6 {
+		color: #55E439;
+	}
+	.sc9 {
+		color: cyan;
+	}
+	.sc10 {
+		color: #FFAA00;
+	}
+	.sc11 {
+		color: #F8F8F8;
+	}
+	.sc16 {
+		color: #FFAA00;
+	}
+	</style>
+</head><body>
+<h1 class="document_title">CAB202 Topic 10 – Analog to Digital Conversion and </h1>
+	<h1 class="document_title"> Pulse-Width Modulation</h1>
+<p>Authors:</p>
+	<ul>
+<li>Luis Mejias QUT (2020)</li>
+</ul>
+	
+    <h2><a name="_contents">Contents</a></h2>
+    
+	<ul>
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#roadmap" title="roadmap">Roadmap</a>
+	
+			
+	
+	
+	
+	
+	</li>
+		
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#format" title="format">References</a>
+	
+			
+	
+	
+	
+	
+	</li>
+		
+			<li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#de_bouncing" title="de_bouncing">Analog to Digital conversion </a>
+	
+			
+	
+	
+	          <ul>
+			    <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#adc_intro">Introduction</a></li>
+	        
+			    <li>
+    
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#adc_registers" title="debounce_soln_1">ADC registers </a></li>
+			    <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#adc_example" title="debounce_soln_1">Example</a></li>
+		      </ul>
+	  </li>
+			<li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#pwm" title="debounce_soln_1">Pulse-Width Modulation</a>
+			  
+			  
+	          <ul>
+	            <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#pwm_intro" title="dbs1_idea">Introduction </a></li>
+	            <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#timer0_registers" title="dbs1_disc">Hardware based PWM </a>
+                </li>
+	            <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#timer0_registers">Using Timer0</a></li>
+	            <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#timer0_pwm">Example</a></li>
+	            <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#software_pwm" title="dbs1_disc">Software based PWM </a></li>
+              </ul>
+	  </li>
+			<li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#servos" title="debounce_soln_2">Woking with servos </a>	  </li>
+			<li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#exercices">Additional Exercices</a>
+			  
+			  
+      </li>
+		
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#appendices" title="appendices">Appendices</a>
+	
+			
+	
+	
+	    <ul>
+			    <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/CAB202-Topic10-Notes.html#uart_interrupt">Appendix 1: Interrupt-based UART</a></li>
+	        </ul>
+	
+	
+	
+	</li>
+		
+</ul>
+
+	<hr>
+	
+	
+
+    
+		<h2><a name="roadmap">Roadmap</a></h2>
+		<div class="section">
+		<p><em>Previously:</em></p>
+		<ol start="7">
+		  <li>AVR ATMega328P Introduction to Microcontrollers; Digital Input/Output </li>
+		  <li>Serial Communication – communicating with another computer/microcontroller		</li>
+		</ol>
+		<ol start="9">
+		  <li>Debouncing, Timers and Interrupts. Asynchronous programming.		</li>
+		</ol>
+		<p><em>This week:</em></p>
+		<ol start="10">
+		  <li><strong>Analogue to Digital Conversion; Pulse Width Modulation (PWM); Assignment 2 Q&amp;A.</strong></li>
+		</ol>
+		<p><em>Still to come:</em></p>
+		<ol start="11">
+		  <li>LCD Display, sending digital signals to a device.</li>
+        </ol>
+</div>
+		<hr>
+	
+	
+
+    
+		<h2><a name="format">References</a></h2>
+		<div class="section">
+		<p>Recommended reading:</p>
+
+		<ul>
+		  <li>Blackboard&#8594;Learning Resources&#8594;Microcontrollers&#8594;atmega328P_datasheet.pdf.</li>
+</ul>
+	</div>
+		<hr>
+	
+	
+
+    
+		<h2><a name="de_bouncing">Analog to Digital Conversion</a></h2>
+		<div class="section">
+		
+	
+    
+		<h3><a name="adc_intro">Introduction</a></h3>
+		<p>Most of the physical quantities around us are continuous. 
+
+By continuous we mean that the quantity can take any value between two extremes. 
+
+For example the atmospheric temperature can take any value (within certain range). 
+
+If an electrical quantity is made to vary directly in proportion to this value (temperature, etc.) then what we have is an analog signal which in most cases is a voltage. We have to convert this into digital form if we want to manipulate it with a digital microcontroller. 
+
+For this an ADC or analog to digital converter is needed. 
+</p>
+		<p>Analog signals have a frequency. A frequency is the number of occurrences of a repeating event per unit of time. For analog signals (in particular cyclical)  is defined as a number of cycles per unit time. Frequency is measured in units of hertz which is equal to one occurrence of a repeating event per second. For signals that vary with time, samplig is defined as the measure of the value of the continuous signal  every T seconds, which is called the sampling interval or the sampling period. </p>
+		<p>The Nyquist rate is the minimum sampling period required to avoid aliasing, equal to twice the highest frequency contained within the signal. Nyquist Rate = 2 x fmax. Therefore, we must be aware of the maximum frequency components of the analof signal so we can use the right samplig period. In our micronctrollers, this is defined by a pre-scaler. Out microcontroller has a fixed clock signal, so  dividing this clock signal we can achive arbitrary frequencies that  can be used to sample input signals connected to a particular micrcontroller pin.</p>
+		<div class="subsection">
+		  <p><a name="adc_registers"><strong>ADC Register</strong></a>.</p>
+            <p>Our microntroller has 9  pins that can be used to read analog signal. These 9 pins are associated with a channel in the internal ADC circuitry. There is only one ADC circuitry, therefore these channels are multiplexed in time sharing the same core ADC converter.            </p>
+            <p>The register associated with ADC are:</p>
+            <p><code>ADMUX </code> – ADC Multiplexer Selection Register:</p>
+            <ul>
+              <table cellspacing="0" border="1">
+                <tbody><tr>
+                  <td style="min-width:1in;">Bits</td>
+                  <td style="min-width:1in;">7</td>
+                  <td style="min-width:1in;">6</td>
+                  <td style="min-width:1in;">5</td>
+                  <td style="min-width:1in;">4</td>
+                  <td style="min-width:1in;">3</td>
+                  <td style="min-width:1in;">2</td>
+                  <td style="min-width:1in;">1</td>
+                  <td style="min-width:1in;">0</td>
+                </tr>
+                <tr>
+                  <td style="min-width:1in;">Name</td>
+                  <td style="min-width:1in;"><code>REFS1</code></td>
+                  <td style="min-width:1in;"><code>REFS0</code></td>
+                  <td style="min-width:1in;"><code>ADLAR</code></td>
+                  <td style="min-width:1in;"><code>-</code></td>
+                  <td style="min-width:1in;"><code>MUX3</code></td>
+                  <td style="min-width:1in;"><code>MUX2</code></td>
+                  <td style="min-width:1in;"><code>MUX1</code></td>
+                  <td style="min-width:1in;"><code>MUX0</code></td>
+                </tr>
+                <tr>
+                  <td style="min-width:1in;">Read/Write</td>
+                  <td style="min-width:1in;">R/W</td>
+                  <td style="min-width:1in;">R/W</td>
+                  <td style="min-width:1in;">R/W</td>
+                  <td style="min-width:1in;">R</td>
+                  <td style="min-width:1in;">R/W</td>
+                  <td style="min-width:1in;">R/W</td>
+                  <td style="min-width:1in;">R/W</td>
+                  <td style="min-width:1in;">R/W</td>
+                </tr>
+                <tr>
+                  <td style="min-width:1in;">initially</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                  <td style="min-width:1in;">0</td>
+                </tr>
+              </tbody></table>
+              <ul>
+                <li><code>REFSx</code> = Reference Selection Bits: leave this at REFS0=1, REFS1=0. Ref voltage equal to Vcc (max input)</li>
+                <li><code>ADLAR</code> = ADC Left Adjust Result: leave this at 0</li>
+                <li><code>MUX[3:0]</code> = Analog Channel Selection Bits. See below</li>
+              </ul>
+            </ul>
+          <p> Values are:			</p>
+          <table cellspacing="0" border="1">
+              <tbody><tr>
+                <td width="83"><code>MUX3:0</code></td>
+                <td width="245">Input Channel Selection</td>
+              </tr>
+              <tr>
+                <td><code>0b0000</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC0 </p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0001</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC1</p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0010</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC2</p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0011</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC3</p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0100</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC4</p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0101</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC5</p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0110</code></td>
+                <td><div title="Page 258">
+                  <div>
+                    <div>
+                      <div>
+                        <p>ADC6</p>
+                      </div>
+                    </div>
+                  </div>
+                </div></td>
+              </tr>
+              <tr>
+                <td><code>0b0111</code></td>
+                <td>ADC7</td>
+              </tr>
+              <tr>
+                <td><code>0b1000</code></td>
+                <td>ADC8 (used for temperature sensors)</td>
+              </tr>
+          </tbody></table>
+            <p><code>ADCSRA </code> – ADC Control and Status Register A: 
+            </p>
+            <table cellspacing="0" border="1">
+              <tbody><tr>
+                <td style="min-width:1in;">Bits</td>
+                <td style="min-width:1in;">7</td>
+                <td style="min-width:1in;">6</td>
+                <td style="min-width:1in;">5</td>
+                <td style="min-width:1in;">4</td>
+                <td style="min-width:1in;">3</td>
+                <td style="min-width:1in;">2</td>
+                <td style="min-width:1in;">1</td>
+                <td style="min-width:1in;">0</td>
+              </tr>
+              <tr>
+                <td style="min-width:1in;">Name</td>
+                <td style="min-width:1in;"><code>ADEN</code></td>
+                <td style="min-width:1in;"><code>ADSC</code></td>
+                <td style="min-width:1in;"><code>ADATE</code></td>
+                <td style="min-width:1in;"><code>ADIF</code></td>
+                <td style="min-width:1in;"><code>ADIE</code></td>
+                <td style="min-width:1in;"><code>ADPS2</code></td>
+                <td style="min-width:1in;"><code>ADPS1</code></td>
+                <td style="min-width:1in;"><code>ADPS0</code></td>
+              </tr>
+              <tr>
+                <td style="min-width:1in;">Read/Write</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+                <td style="min-width:1in;">R/W</td>
+              </tr>
+              <tr>
+                <td style="min-width:1in;">initially</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+                <td style="min-width:1in;">0</td>
+              </tr>
+          </tbody></table>
+            <ul>
+              <ul>
+                <li><code>ADEN</code> = ADC Enable.Writing this bit to one enables the ADC. By writing it to zero, the ADC is turned off</li>
+                <li><code>ADSC</code> = ADC Start Conversion: In Single Conversion mode, write this bit to one to start each conversion. In Free Running mode, write this bit to one to start the first conversion</li>
+                <li><code>ADATE</code> = When this bit is written to one, Auto Triggering of the ADC is enabled</li>
+                <li><code>ADIF</code> = ADC Interrupt Flag: This bit is set when an ADC conversion completes and the Data Registers are updated</li>
+                <li><code>ADIE</code> = ADC Interrupt Enable:When this bit is written to one and the I-bit in SREG is set, the ADC Conversion Complete Interrupt is activated.</li>
+                <li><code>ADPS[2:0] </code>= ADC Prescaler Select Bits</li>
+              </ul>
+            </ul>
+          <table width="344" border="1" cellspacing="0">
+              <tbody><tr>
+                <td width="92"><code>ADPS2:0</code></td>
+                <td width="242">Pre-scaler</td>
+              </tr>
+              <tr>
+                <td><code>0b000</code></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td><code>0b001</code></td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td><code>0b010</code></td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td><code>0b011</code></td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <td><code>0b100</code></td>
+                <td>16</td>
+              </tr>
+              <tr>
+                <td><code>0b101</code></td>
+                <td>32</td>
+              </tr>
+              <tr>
+                <td><code>0b110</code></td>
+                <td>64</td>
+              </tr>
+              <tr>
+                <td><code>0b111</code></td>
+                <td>128</td>
+              </tr>
+          </tbody></table>
+          <p><code>ADC </code> – ADC Conversion result. 10 bits ADC9:0</p>
+          <p><img src="./CAB202 Topic 10 – Analog to Digital and Pulse-Width Modulation_files/ADC.png" width="663" height="422" alt=""></p>
+          <p>Standard Configuration: Channel 0 in use, pre-scaler of 128</p>
+          <p><strong>ADMUX</strong></p>
+          <table width="439" border="1">
+            <tbody>
+              <tr>
+                <th scope="col">7</th>
+                <th scope="col">6</th>
+                <th scope="col">5</th>
+                <th scope="col">4</th>
+                <th scope="col">3</th>
+                <th scope="col">2</th>
+                <th scope="col">1</th>
+                <th scope="col">0</th>
+              </tr>
+              <tr>
+                <td>REFS1</td>
+                <td>REFS0</td>
+                <td>ADLAR</td>
+                <td>-</td>
+                <td>MUX3</td>
+                <td>MUX2</td>
+                <td>MUX1</td>
+                <td>MUX0</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><strong>ADCSRA</strong></p>
+          <table width="438" border="1">
+            <tbody>
+              <tr>
+                <th scope="col">7</th>
+                <th scope="col">6</th>
+                <th scope="col">5</th>
+                <th scope="col">4</th>
+                <th scope="col">3</th>
+                <th scope="col">2</th>
+                <th scope="col">1</th>
+                <th scope="col">0</th>
+              </tr>
+              <tr>
+                <td>ADEN</td>
+                <td>ADSC</td>
+                <td>ADATE</td>
+                <td>ADIF</td>
+                <td>ADIE</td>
+                <td>ADPS2</td>
+                <td>ADPS1</td>
+                <td>ADPS0</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Note: ADSC is set to one just before the conversion start, in single conversion mode.</p>
+          <p>&nbsp;</p>
+		</div>
+
+
+		  
+
+		
+        <div class="subsection">
+          <p>The program below uses the ADC0 (channel 0) to read a potentiometer. During the main process a single conversion is performed, then we wait for the conversion to finish, then  we read the result from the register <code>ADC</code>. Values are sent via UART for debugging.   </p>
+          <p> <a name="adc_example">  The </a>example1.c, ADCRead program illustrates ADC conversion. </p>
+          <pre style="line-height: 1; background: #0f140f; color: #BDAE9D; font-family: monospace; max-width: 95%;"><span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;avr/io.h&gt;</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">/*</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Setting data directions in a data direction register (DDR)</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *  Setting, clearing, and reading bits in registers.</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *	reg is the name of a register; pin is the index (0..7)</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *  of the bit to set, clear or read.</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> *  (WRITE_BIT is a combination of CLEAR_BIT &amp; SET_BIT)</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f"> */</span>
+
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define SET_BIT(reg, pin)		    (reg) |= (1 &lt;&lt; (pin))</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define CLEAR_BIT(reg, pin)		  (reg) &amp;= ~(1 &lt;&lt; (pin))</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define WRITE_BIT(reg, pin, value)   (reg) = (((reg) &amp; ~(1 &lt;&lt; (pin))) | ((value) &lt;&lt; (pin)))</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define BIT_VALUE(reg, pin)		  (((reg) &gt;&gt; (pin)) &amp; 1)</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define BIT_IS_SET(reg, pin)	     (BIT_VALUE((reg),(pin))==1)</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//uart definitions</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define BAUD (9600)</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define MYUBRR (F_CPU/16/BAUD-1)</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// These buffers may be any size from 2 to 256 bytes.</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define  RX_BUFFER_SIZE  64</span>
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#define  TX_BUFFER_SIZE  64</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//uart definitions</span>
+<span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span> <span style="color: #ffffff">rx_buf;</span>
+
+<span style="color: #fb660a; font-weight: bold">static</span> <span style="color: #fb660a; font-weight: bold">volatile</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">tx_buffer[TX_BUFFER_SIZE];</span>
+<span style="color: #fb660a; font-weight: bold">static</span> <span style="color: #fb660a; font-weight: bold">volatile</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">tx_buffer_head;</span>
+<span style="color: #fb660a; font-weight: bold">static</span> <span style="color: #fb660a; font-weight: bold">volatile</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">tx_buffer_tail;</span>
+<span style="color: #fb660a; font-weight: bold">static</span> <span style="color: #fb660a; font-weight: bold">volatile</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">rx_buffer[RX_BUFFER_SIZE];</span>
+<span style="color: #fb660a; font-weight: bold">static</span> <span style="color: #fb660a; font-weight: bold">volatile</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">rx_buffer_head;</span>
+<span style="color: #fb660a; font-weight: bold">static</span> <span style="color: #fb660a; font-weight: bold">volatile</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">rx_buffer_tail;</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//Functions declaration</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">setup</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">);</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">process</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">);</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_init</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">ubrr);</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//uart functions</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_putchar</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">c);</span>
+<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ff0086; font-weight: bold">uart_getchar</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">);</span>
+<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ff0086; font-weight: bold">uart_available</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">);</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_putstring</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">s);</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_getLine</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">buf,</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">n);</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//ADC functions</span>
+<span style="color: #cdcaa9; font-weight: bold">uint16_t</span> <span style="color: #ff0086; font-weight: bold">adc_read</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">channel);</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">adc_init</span><span style="color: #ffffff">();</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//string convertion functions </span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">ftoa</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">float</span> <span style="color: #ffffff">n,</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">res,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">afterpoint);</span>
+<span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">intToStr</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">x,</span> <span style="color: #cdcaa9; font-weight: bold">char</span> <span style="color: #ffffff">str[],</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">d);</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">reverse</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">str,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">len);</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// END function declarations</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//main loop</span>
+<span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">main</span><span style="color: #ffffff">()</span> <span style="color: #ffffff">{</span>
+	<span style="color: #ffffff">setup();</span>
+
+	<span style="color: #fb660a; font-weight: bold">for</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">;;</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+		<span style="color: #ffffff">process();</span>
+		<span style="color: #ffffff">_delay_ms(</span><span style="color: #0086f7; font-weight: bold">50</span><span style="color: #ffffff">);</span>
+	<span style="color: #ffffff">}</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//initialises ADC and UART port</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">setup</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">//init uart</span>
+	<span style="color: #ffffff">uart_init(MYUBRR);</span>
+
+	<span style="color: #008800; font-style: italic; background-color: #0f140f">// Enable orange LED</span>
+	<span style="color: #ffffff">SET_BIT(DDRB,</span> <span style="color: #0086f7; font-weight: bold">5</span><span style="color: #ffffff">);</span>
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// initialise adc</span>
+	<span style="color: #008800; font-style: italic; background-color: #0f140f">// ADC Enable and pre-scaler of 128: ref table 24-5 in datasheet</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// ADEN  = 1</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// ADPS2 = 1, ADPS1 = 1, ADPS0 = 1</span>
+	<span style="color: #ffffff">ADCSRA</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">ADEN)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">ADPS2)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">ADPS1)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">ADPS0);</span>
+
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">// select channel and ref input voltage</span>
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">// channel 0, PC0 (A0 on the uno)</span>
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">// MUX0=0, MUX1=0, MUX2=0, MUX3=0</span>
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">// REFS0=1</span>
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">// REFS1=0</span>
+    <span style="color: #ffffff">ADMUX</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">REFS0);</span>
+  
+<span style="color: #ffffff">}</span>
+
+
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">process</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+	
+   <span style="color: #cdcaa9; font-weight: bold">char</span> <span style="color: #ffffff">temp_buf[</span><span style="color: #0086f7; font-weight: bold">64</span><span style="color: #ffffff">];</span>
+  
+  
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">// Start single conversion by setting ADSC bit in ADCSRA</span>
+	<span style="color: #ffffff">ADCSRA</span> <span style="color: #ffffff">|=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">ADSC);</span>
+
+	<span style="color: #008800; font-style: italic; background-color: #0f140f">// Wait for ADSC bit to clear, signalling conversion complete.</span>
+	 <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">ADCSRA</span> <span style="color: #ffffff">&amp;</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">ADSC)</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">{}</span>
+
+	<span style="color: #008800; font-style: italic; background-color: #0f140f">// Result now available in ADC</span>
+	 <span style="color: #cdcaa9; font-weight: bold">uint16_t</span> <span style="color: #ffffff">pot</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">ADC;</span>
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">//convert float to a string </span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// ftoa(pot, temp_buf, 4);</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// convert uint16_t to string</span>
+     <span style="color: #ffffff">snprintf(temp_buf,</span> <span style="color: #fb660a; font-weight: bold">sizeof</span><span style="color: #ffffff">(temp_buf),</span> <span style="color: #0086d2">"%d"</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">pot);</span>
+  
+	 <span style="color: #008800; font-style: italic; background-color: #0f140f">//when converted value is above a threshold, perform an action </span>
+     <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(pot</span> <span style="color: #ffffff">&gt;</span> <span style="color: #0086f7; font-weight: bold">512</span><span style="color: #ffffff">)</span>
+       <span style="color: #ffffff">SET_BIT(PORTB,PB5);</span>
+   	 <span style="color: #fb660a; font-weight: bold">else</span>
+       <span style="color: #ffffff">CLEAR_BIT(PORTB,PB5);</span>
+    
+
+   <span style="color: #008800; font-style: italic; background-color: #0f140f">//send serial data</span>
+   <span style="color: #ffffff">uart_putstring((</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span> <span style="color: #ffffff">*)</span> <span style="color: #ffffff">temp_buf);</span>
+   <span style="color: #ffffff">uart_putchar(</span><span style="color: #0086d2">'\n'</span><span style="color: #ffffff">);</span>
+
+	
+<span style="color: #ffffff">}</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">/********** auxiliary functions *************/</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Reverses a string 'str' of length 'len' </span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">reverse</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">str,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">len)</span> 
+<span style="color: #ffffff">{</span> 
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">j</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">len</span> <span style="color: #ffffff">-</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">temp;</span> 
+    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(i</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">j)</span> <span style="color: #ffffff">{</span> 
+        <span style="color: #ffffff">temp</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">str[i];</span> 
+        <span style="color: #ffffff">str[i]</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">str[j];</span> 
+        <span style="color: #ffffff">str[j]</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">temp;</span> 
+        <span style="color: #ffffff">i++;</span> 
+        <span style="color: #ffffff">j--;</span> 
+    <span style="color: #ffffff">}</span> 
+<span style="color: #ffffff">}</span> 
+  
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Converts a given integer x to string str[].  </span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// d is the number of digits required in the output.  </span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// If d is more than the number of digits in x,  </span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// then 0s are added at the beginning. </span>
+<span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">intToStr</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">x,</span> <span style="color: #cdcaa9; font-weight: bold">char</span> <span style="color: #ffffff">str[],</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">d)</span> 
+<span style="color: #ffffff">{</span> 
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span> 
+    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(x)</span> <span style="color: #ffffff">{</span> 
+        <span style="color: #ffffff">str[i++]</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(x</span> <span style="color: #ffffff">%</span> <span style="color: #0086f7; font-weight: bold">10</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">+</span> <span style="color: #0086d2">'0'</span><span style="color: #ffffff">;</span> 
+        <span style="color: #ffffff">x</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">x</span> <span style="color: #ffffff">/</span> <span style="color: #0086f7; font-weight: bold">10</span><span style="color: #ffffff">;</span> 
+    <span style="color: #ffffff">}</span> 
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// If number of digits required is more, then </span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// add 0s at the beginning </span>
+    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(i</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">d)</span> 
+        <span style="color: #ffffff">str[i++]</span> <span style="color: #ffffff">=</span> <span style="color: #0086d2">'0'</span><span style="color: #ffffff">;</span> 
+  
+    <span style="color: #ffffff">reverse(str,</span> <span style="color: #ffffff">i);</span> 
+    <span style="color: #ffffff">str[i]</span> <span style="color: #ffffff">=</span> <span style="color: #0086d2">'\0'</span><span style="color: #ffffff">;</span> 
+    <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">i;</span> 
+<span style="color: #ffffff">}</span> 
+  
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Converts a floating-point/double number to a string. </span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">ftoa</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">float</span> <span style="color: #ffffff">n,</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">res,</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">afterpoint)</span> 
+<span style="color: #ffffff">{</span> 
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Extract integer part </span>
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">ipart</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)n;</span> 
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// Extract floating part </span>
+    <span style="color: #cdcaa9; font-weight: bold">float</span> <span style="color: #ffffff">fpart</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">n</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">float</span><span style="color: #ffffff">)ipart;</span> 
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// convert integer part to string </span>
+    <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">intToStr(ipart,</span> <span style="color: #ffffff">res,</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">);</span> 
+  
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// check for display option after point </span>
+    <span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(afterpoint</span> <span style="color: #ffffff">!=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span> 
+        <span style="color: #ffffff">res[i]</span> <span style="color: #ffffff">=</span> <span style="color: #0086d2">'.'</span><span style="color: #ffffff">;</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// add dot </span>
+  
+        <span style="color: #008800; font-style: italic; background-color: #0f140f">// Get the value of fraction part upto given no. </span>
+        <span style="color: #008800; font-style: italic; background-color: #0f140f">// of points after dot. The third parameter  </span>
+        <span style="color: #008800; font-style: italic; background-color: #0f140f">// is needed to handle cases like 233.007 </span>
+        <span style="color: #ffffff">fpart</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">fpart</span> <span style="color: #ffffff">*</span> <span style="color: #ffffff">pow(</span><span style="color: #0086f7; font-weight: bold">10</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">afterpoint);</span> 
+  
+        <span style="color: #ffffff">intToStr((</span><span style="color: #cdcaa9; font-weight: bold">int</span><span style="color: #ffffff">)fpart,</span> <span style="color: #ffffff">res</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">,</span> <span style="color: #ffffff">afterpoint);</span> 
+    <span style="color: #ffffff">}</span> 
+<span style="color: #ffffff">}</span> 
+
+
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">//PLEASE NOTE THIS VERSION OF UART USES INTERRUPTS</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">/*  ****** serial uart definitions ************ */</span>
+<span style="color: #008800; font-style: italic; background-color: #0f140f">/******************  interrupt based  ********/</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Initialize the UART</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_init</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ffffff">ubrr)</span> <span style="color: #ffffff">{</span>
+  
+  	<span style="color: #ffffff">cli();</span>
+	
+	<span style="color: #ffffff">UBRR0H</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">)(ubrr&gt;&gt;</span><span style="color: #0086f7; font-weight: bold">8</span><span style="color: #ffffff">);</span>
+    <span style="color: #ffffff">UBRR0L</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">)(ubrr);</span>
+	<span style="color: #ffffff">UCSR0B</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">RXEN0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">TXEN0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">RXCIE0);</span>
+	<span style="color: #ffffff">UCSR0C</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">UCSZ01)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">UCSZ00);</span>
+  	<span style="color: #ffffff">tx_buffer_head</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">tx_buffer_tail</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+	<span style="color: #ffffff">rx_buffer_head</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rx_buffer_tail</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+  
+	<span style="color: #ffffff">sei();</span>
+	
+<span style="color: #ffffff">}</span>
+
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Transmit a byte</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_putchar</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">c)</span> <span style="color: #ffffff">{</span>
+	<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">i;</span>
+
+	<span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">tx_buffer_head</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">;</span>
+	<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">TX_BUFFER_SIZE</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+	<span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">tx_buffer_tail</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">);</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// wait until space in buffer</span>
+	<span style="color: #008800; font-style: italic; background-color: #0f140f">//cli();</span>
+	<span style="color: #ffffff">tx_buffer[i]</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">c;</span>
+	<span style="color: #ffffff">tx_buffer_head</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">i;</span>
+	<span style="color: #ffffff">UCSR0B</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">RXEN0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">TXEN0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">RXCIE0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">UDRIE0);</span>
+	<span style="color: #008800; font-style: italic; background-color: #0f140f">//sei();</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Receive a byte</span>
+<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ff0086; font-weight: bold">uart_getchar</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+	<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">c,</span> <span style="color: #ffffff">i;</span>
+
+	<span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">rx_buffer_head</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">rx_buffer_tail</span> <span style="color: #ffffff">);</span> <span style="color: #008800; font-style: italic; background-color: #0f140f">// wait for character</span>
+	<span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rx_buffer_tail</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">;</span>
+	<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">RX_BUFFER_SIZE</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+	<span style="color: #ffffff">c</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rx_buffer[i];</span>
+	<span style="color: #ffffff">rx_buffer_tail</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">i;</span>
+	<span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">c;</span>
+<span style="color: #ffffff">}</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Transmit a string</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_putstring</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">s)</span>
+<span style="color: #ffffff">{</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// transmit character until NULL is reached</span>
+    <span style="color: #fb660a; font-weight: bold">while</span><span style="color: #ffffff">(*s</span> <span style="color: #ffffff">&gt;</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">uart_putchar(*s++);</span>
+<span style="color: #ffffff">}</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Receive a string</span>
+<span style="color: #cdcaa9; font-weight: bold">void</span> <span style="color: #ff0086; font-weight: bold">uart_getLine</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span><span style="color: #ffffff">*</span> <span style="color: #ffffff">buf,</span> <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">n)</span>
+<span style="color: #ffffff">{</span>
+    <span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">bufIdx</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+    <span style="color: #cdcaa9; font-weight: bold">unsigned</span> <span style="color: #cdcaa9; font-weight: bold">char</span> <span style="color: #ffffff">c;</span>
+
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// while received character is not carriage return</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// and end of buffer has not been reached</span>
+    <span style="color: #fb660a; font-weight: bold">do</span>
+    <span style="color: #ffffff">{</span>
+        <span style="color: #008800; font-style: italic; background-color: #0f140f">// receive character</span>
+        <span style="color: #ffffff">c</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">uart_getchar();</span>
+
+        <span style="color: #008800; font-style: italic; background-color: #0f140f">// store character in buffer</span>
+        <span style="color: #ffffff">buf[bufIdx++]</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">c;</span>
+    <span style="color: #ffffff">}</span>
+    <span style="color: #fb660a; font-weight: bold">while</span><span style="color: #ffffff">((bufIdx</span> <span style="color: #ffffff">&lt;</span> <span style="color: #ffffff">n)</span> <span style="color: #ffffff">&amp;&amp;</span> <span style="color: #ffffff">(c</span> <span style="color: #ffffff">!=</span> <span style="color: #0086d2">'\n'</span><span style="color: #ffffff">));</span>
+
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// ensure buffer is null terminated</span>
+    <span style="color: #ffffff">buf[bufIdx]</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+<span style="color: #ffffff">}</span>
+
+
+
+<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ff0086; font-weight: bold">uart_available</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+	<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">head,</span> <span style="color: #ffffff">tail;</span>
+
+	<span style="color: #ffffff">head</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rx_buffer_head;</span>
+	<span style="color: #ffffff">tail</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rx_buffer_tail;</span>
+	<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">head</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">tail</span> <span style="color: #ffffff">)</span> <span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">head</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">tail;</span>
+	<span style="color: #fb660a; font-weight: bold">return</span> <span style="color: #ffffff">RX_BUFFER_SIZE</span> <span style="color: #ffffff">+</span> <span style="color: #ffffff">head</span> <span style="color: #ffffff">-</span> <span style="color: #ffffff">tail;</span>
+<span style="color: #ffffff">}</span>
+
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Transmit Interrupt</span>
+<span style="color: #ffffff">ISR(USART_UDRE_vect)</span> <span style="color: #ffffff">{</span>
+	<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">i;</span>
+
+	<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">tx_buffer_head</span> <span style="color: #ffffff">==</span> <span style="color: #ffffff">tx_buffer_tail</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+		<span style="color: #008800; font-style: italic; background-color: #0f140f">// buffer is empty, disable transmit interrupt</span>
+		<span style="color: #ffffff">UCSR0B</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">RXEN0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">TXEN0)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">RXCIE0);</span>
+	<span style="color: #ffffff">}</span>
+	<span style="color: #fb660a; font-weight: bold">else</span> <span style="color: #ffffff">{</span>
+		<span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">tx_buffer_tail</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">;</span>
+		<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">TX_BUFFER_SIZE</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+		<span style="color: #ffffff">UDR0</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">tx_buffer[i];</span>
+		<span style="color: #ffffff">tx_buffer_tail</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">i;</span>
+	<span style="color: #ffffff">}</span>
+<span style="color: #ffffff">}</span>
+
+<span style="color: #008800; font-style: italic; background-color: #0f140f">// Receive Interrupt</span>
+<span style="color: #ffffff">ISR(USART_RX_vect)</span> <span style="color: #ffffff">{</span>
+	<span style="color: #cdcaa9; font-weight: bold">uint8_t</span> <span style="color: #ffffff">c,</span> <span style="color: #ffffff">i;</span>
+  
+	<span style="color: #ffffff">c</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">UDR0;</span>
+	<span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">rx_buffer_head</span> <span style="color: #ffffff">+</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">;</span>
+	<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">&gt;=</span> <span style="color: #ffffff">RX_BUFFER_SIZE</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">;</span>
+	<span style="color: #fb660a; font-weight: bold">if</span> <span style="color: #ffffff">(</span> <span style="color: #ffffff">i</span> <span style="color: #ffffff">!=</span> <span style="color: #ffffff">rx_buffer_tail</span> <span style="color: #ffffff">)</span> <span style="color: #ffffff">{</span>
+		<span style="color: #ffffff">rx_buffer[i]</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">c;</span>
+		<span style="color: #ffffff">rx_buffer_head</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">i;</span>
+	<span style="color: #ffffff">}</span>
+<span style="color: #ffffff">}</span>
+</pre>
+
+
+		
+		
+		
+		
+		
+		<!-------------->
+		
+		  
+        </div>
+        <p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/www.tinkercad.com">TinkerCad</a> implementation of the program:</p>
+        <p><a href="https://www.tinkercad.com/things/4cldZq8ZPRB">https://www.tinkercad.com/things/4cldZq8ZPRB</a>			</p>
+        <p>&nbsp;</p>
+		</div>
+		<hr>
+	
+	
+
+    
+		<h2><a name="pwm">Pulse-Width Modulation</a></h2>
+		<div class="section">
+		
+	
+    
+		<h3><a name="pwm_intro">Introduction</a></h3>
+		<div class="subsection">
+		  <p>PWM is a modulation technique used to encode information into a signal, although its main use is for regulating power supplied to a load.  It also can be used to generate analog signals using a digital source.  </p>
+		  <p>Consist of two main components that define its behavior: a  duty cycle and a frequency.  </p>
+		  <ul>
+		    <li>The duty cycle describes the amount of time the signal is in a high (on) stated as a percentage of the total time it takes to complete one cycle.  </li>
+		    <li>The frequency determines how fast the PWM completes a cycle (i.e. 1000 Hz would be 1000 cycles per second), and therefore how fast it switches between high and low states.  By cycling a digital signal off and on at a fast enough rate, and with a certain duty cycle, the output will appear to behave like a constant voltage analog signal when providing power to devices.		  </li>
+		  </ul>
+		  <p><a href="./CAB202 Topic 10 – Analog to Digital and Pulse-Width Modulation_files/pwm1.png" target="_blank"><img src="./CAB202 Topic 10 – Analog to Digital and Pulse-Width Modulation_files/pwm1.png" width="666" height="380" alt=""></a></p>
+		  <p>PWM signals are generated using timers. ATMega328P has 3 timers. Each timer can be connected to 2 or more output pins. Each timer has a counter, which cycles: In one direction, from 0 to TOP, at which point the timer wraps back to 0, or from TOP downward to 0.  A timer can be set to repeatedly compare its counter to a threshold value set in a compare register. When the counter reaches the threshold, or when it hits 0, it can toggle the value of a digital output pin. We can use this to implement PWM in hardware or software.</p>
+		  <p>In summary, what's involved in generating PWM signals.</p>
+		  <ul>
+		    <li>A counter, usually from a timer.</li>
+		    <li>A comparison value. This value is compared against the counter value.</li>
+		    <li>An output pin that toggles state, everytime the counter is equal to the comparison value.</li>
+	      </ul>
+		  <p>&nbsp;</p>
+		</div>
+		
+	
+    
+		<h2><a name="timer0_registers">Hardware-Based PWM</a>		</h2>
+		<h3><a name="timer0_registers">Timer0 registers in PWM mode (Datasheet, Section 15.9)</a></h3>
+		<div class="subsection">
+			<p>Each timer has a set of dedicated control and counter registers. Details are shown for Timer 0; you can look up the datasheet to find the corresponding registers for Timers 1 and 2.</p>
+
+			<ul><li><code>TCCR0A</code> – Timer/Counter Control Register 0 A:
+				<table cellspacing="0" border="1">
+				<tbody><tr><td style="min-width:1in;">Bits</td><td style="min-width:1in;">7</td><td style="min-width:1in;">6</td><td style="min-width:1in;">5</td><td style="min-width:1in;">4</td><td style="min-width:1in;">3</td><td style="min-width:1in;">2</td><td style="min-width:1in;">1</td><td style="min-width:1in;">0</td></tr>
+				<tr><td style="min-width:1in;">Name</td><td style="min-width:1in;"><code>COMOA1</code></td><td style="min-width:1in;"><code>COMOA0</code></td><td style="min-width:1in;"><code>COMOB1</code></td><td style="min-width:1in;"><code>COMOB0</code></td><td style="min-width:1in;">-</td><td style="min-width:1in;">-</td><td style="min-width:1in;"><code>WGM01</code></td><td style="min-width:1in;"><code>WGM00</code></td></tr>
+				<tr><td style="min-width:1in;">Read/Write</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td></tr>
+				<tr><td style="min-width:1in;">initially</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td></tr>
+				</tbody></table>
+				<ul>
+				  <li><code>COMOAx</code> = Compare Match Output A Mode.These bits control the Output Compare pin (OC0A) behavior</li>
+				  <li>
+				    <table width="447" height="170" border="1">
+				      <tbody>
+				        <tr>
+				          <th scope="col">COM0A1</th>
+				          <th scope="col">COM0A0</th>
+				          <th scope="col">Description</th>
+			            </tr>
+				        <tr>
+				          <td>0</td>
+				          <td>0</td>
+				          <td>Normal port operation, OC0A disconnected.</td>
+			            </tr>
+				        <tr>
+				          <td>0</td>
+				          <td>1</td>
+				          <td>Toggle OC0A on Compare Match</td>
+			            </tr>
+				        <tr>
+				          <td>1</td>
+				          <td>0</td>
+				          <td>Clear OC0A on Compare Match</td>
+			            </tr>
+				        <tr>
+				          <td>1</td>
+				          <td>1</td>
+				          <td>Set OC0A on Compare Match</td>
+			            </tr>
+			          </tbody>
+			        </table>
+				  </li>
+<li><code>COMOBx</code> = Compare Match Output B Mode.These bits control the Output Compare pin (OC0B) behavior</li>
+<li>
+  <table width="447" height="170" border="1">
+    <tbody>
+      <tr>
+        <th scope="col">COM0B1</th>
+        <th scope="col">COM0B0</th>
+        <th scope="col">Description</th>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>0</td>
+        <td>Normal port operation, OC0B disconnected.</td>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>1</td>
+        <td>Reserved</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>Clear OC0B on Compare Match, set OC0B at BOTTOM, (non-inverting mode) </td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>1</td>
+        <td>
+          
+                Set OC0B on Compare Match, clear OC0B at BOTTOM, (inverting mode)
+            
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</li>
+<li><code>WGM0x</code> = Waveform Generation  Mode.Combined with the WGM02 bit found in the TCCR0B Register, these bits control the counting sequence of the counter</li>
+<li>
+  <table width="200" border="1">
+    <tbody>
+      <tr>
+        <th scope="col">Mode</th>
+        <th scope="col">WGM02</th>
+        <th scope="col">WGM01</th>
+        <th scope="col">WGM00</th>
+        <th scope="col">Operation</th>
+        <th scope="col">Top</th>
+        <th scope="col">Update of OCRx at</th>
+        <th scope="col">TOV Flag Set on</th>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>Normal</td>
+        <td>0xFF</td>
+        <td>Immediate</td>
+        <td>MAX</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>1</td>
+        <td>PWM, phase correct</td>
+        <td>0xFF</td>
+        <td>TOP</td>
+        <td>BOTTOM</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>0</td>
+        <td>1</td>
+        <td>0</td>
+        <td>CTC</td>
+        <td>OCRA</td>
+        <td>Immediate</td>
+        <td>MAX</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>Fast PWM</td>
+        <td>0xFF</td>
+        <td>BOTTOM</td>
+        <td>MAX</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>1</td>
+        <td>0</td>
+        <td>0</td>
+        <td>Reserved</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>1</td>
+        <td>0</td>
+        <td>1</td>
+        <td>PWM,Phase correct</td>
+        <td>OCRA</td>
+        <td>TOP</td>
+        <td>BOTTOM</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>1</td>
+        <td>1</td>
+        <td>0</td>
+        <td>Reserved</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>1</td>
+        <td>1</td>
+        <td>1</td>
+        <td>Fast PWM</td>
+        <td>OCRA</td>
+        <td>BOTTOM</td>
+        <td>TOPM</td>
+      </tr>
+    </tbody>
+  </table>
+</li>
+<li><b>MAX= 0xFF, BOTTOM= 0x00 </b></li>
+</ul></li>
+<li><code>TCCR0B</code> – Timer/Counter Control Register 0 B:
+				<table cellspacing="0" border="1">
+				<tbody><tr><td style="min-width:1in;">Bits</td><td style="min-width:1in;">7</td><td style="min-width:1in;">6</td><td style="min-width:1in;">5</td><td style="min-width:1in;">4</td><td style="min-width:1in;">3</td><td style="min-width:1in;">2</td><td style="min-width:1in;">1</td><td style="min-width:1in;">0</td></tr>
+				<tr><td style="min-width:1in;">Name</td><td style="min-width:1in;"><code>FOC0A</code></td><td style="min-width:1in;"><code>FOC0B</code></td><td style="min-width:1in;">-</td><td style="min-width:1in;">-</td><td style="min-width:1in;"><code>WGM02</code></td><td style="min-width:1in;"><code>CS02</code></td><td style="min-width:1in;"><code>CS01</code></td><td style="min-width:1in;"><code>CS00</code></td></tr>
+				<tr><td style="min-width:1in;">Read/Write</td><td style="min-width:1in;">W</td><td style="min-width:1in;">W</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td></tr>
+				<tr><td style="min-width:1in;">initially</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td></tr>
+				</tbody></table>
+				<ul><li><code>FOC0x</code> = Force output compare: leave these at 0.</li>
+<li><code>WGM02</code> = Waveform Generation  Mode: should match the value used in <code>TCCR0A</code>.</li>
+<li><code>CS02,CS01,CS00</code> = pre-scaler.
+					<br>
+					<em>Figures in this table assume that the CPU speed is set to 16MHz in the <code>setup</code> phase.</em>
+					<br>
+					Values are:
+					<table cellspacing="0" border="1">
+						<tbody><tr><td width="83"><code>CS02:0</code></td>
+					    <td width="391">Counter updates</td></tr>
+						<tr><td><code>0b000</code></td><td>Never (Timer/Counter stopped)</td></tr>
+						<tr><td><code>0b001</code></td>
+						<td>Every clock cycle (No pre-scaling) == 16,000,000 ticks/sec</td></tr>
+						<tr><td><code>0b010</code></td>
+						<td>Every 8 clock cycles == 2,000,000 ticks/sec</td></tr>
+						<tr><td><code>0b011</code></td>
+						<td>Every 64 clock cycles == 250,000 ticks/sec</td></tr>
+						<tr><td><code>0b100</code></td>
+						<td>Every 256 clock cycles == 62,500 ticks/sec</td></tr>
+						<tr><td><code>0b101</code></td>
+						<td>Every 1024 clock cycles == 15,625 ticks/sec</td>
+						</tr>
+						<tr><td><code>0b110</code></td><td>External clock source on T0 pin. Clock on falling edge.</td></tr>
+						<tr><td><code>0b111</code></td><td>External clock source on T0 pin. Clock on rising edge.</td></tr>
+					</tbody></table>
+					<ul><li>We will not be using CS02:0 == 6 or CS02:0 == 7.</li>
+</ul></li>
+</ul></li>
+<li><code>TCNT0</code> – Timer/Counter Register 0: an 8-bit numeric value. <strong>Where the count is stored.</strong></li>
+<li><code>OCR0A</code> – Output Compare Register 0 A: an 8-bit numeric value. Use this to adjut duty cycle</li>
+<li><code>OCR0B</code> – Output Compare Register 0 B: an 8-bit numeric value. Use this to adjust duty cycle</li>
+<li><code>TIMSK0</code> – Timer/Counter Interrupt Mask Register 0: 
+				<table cellspacing="0" border="1">
+				<tbody><tr><td style="min-width:1in;">Bits</td><td style="min-width:1in;">7</td><td style="min-width:1in;">6</td><td style="min-width:1in;">5</td><td style="min-width:1in;">4</td><td style="min-width:1in;">3</td><td style="min-width:1in;">2</td><td style="min-width:1in;">1</td><td style="min-width:1in;">0</td></tr>
+				<tr><td style="min-width:1in;">Name</td><td style="min-width:1in;">-</td><td style="min-width:1in;">-</td><td style="min-width:1in;">-</td><td style="min-width:1in;">-</td><td style="min-width:1in;">-</td><td style="min-width:1in;"><code>OCIE0B</code></td><td style="min-width:1in;"><code>OCIE0A</code></td><td style="min-width:1in;"><code>TOIE0</code></td></tr>
+				<tr><td style="min-width:1in;">Read/Write</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td><td style="min-width:1in;">R/W</td></tr>
+				<tr><td style="min-width:1in;">initially</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td><td style="min-width:1in;">0</td></tr>
+				</tbody></table>
+				<ul><li><code>OCIE0B</code> = Force output compare: leave these at 0</li>
+<li><code>OCIE0A</code> = Force output compare: leave these at 0</li>
+<li><code>TOIE0</code> = Enable Timer Overflow Interrupt.</li>
+</ul></li>
+</ul>
+		</div> 
+
+		
+	
+    
+		<h3><a name="timer0_pwm">Case study: Generate a PWM signal using Timer0</a></h3>
+		<div class="subsection">
+			<p>In the present section we set up Timer 0, and see how to read the value of the clock.</p>
+
+			<ul>
+<li>First, decide how fast we want the Timer/Counter register to update. That is the pre-scaler.</li>
+<li>Timer 0 is an 8 bit timer, so the Timer/Counter register will overflow every 256 ticks.</li>
+<li>We know the number of ticks per second from the datasheet, so we can calculate how long it will take for the timer to count from 0 to 255  (the overflow period) and how many times the counter will overflow per second (the overflow frequency).<br>Definition: Frequency = 1 / Period.
+					<br>
+					<em>Figures in this table assume that the CPU speed is set to 16MHz in the <code>setup</code> phase.</em>
+				    <table cellspacing="0" border="1">
+					<tbody><tr><td><code>CS02:0</code></td><td>Pre-scaler</td><td>Counter frequency</td><td>Overflow period = 256/freq</td><td>Overflow frequency</td></tr>
+					<tr><td><code>0b000</code></td><td>0</td><td>0</td><td>n/a</td><td>n/a</td></tr>
+					<tr><td><code>0b001</code></td><td>1</td>
+					<td>16MHz</td>
+					<td>0.000016s</td>
+					<td>62.5kHz</td></tr>
+					<tr><td><code>0b010</code></td><td>8</td>
+					<td>2MHz</td>
+					<td>0.000128s</td>
+					<td>7.8125kHz</td></tr>
+					<tr><td><code>0b011</code></td><td>64</td>
+					<td>250kHz</td>
+					<td>0.001024s</td>
+					<td>976.56Hz</td></tr>
+					<tr><td><code>0b100</code></td><td>256</td>
+					<td>62.500kHz</td>
+					<td>0.004096s</td>
+					<td>244.14Hz</td></tr>
+					<tr><td><code>0b101</code></td><td>1024</td>
+					<td>15.625kHz</td>
+					<td>0.016384s</td>
+					<td>61.035Hz</td></tr>
+				</tbody></table></li>
+<li>Using the table, and balancing the update speed against our needs, we choose a pre-scaler.</li>
+<li>To set up Timer 0 to overflow about  7,8125 times per second, we choose <code>CS02:0&nbsp;==&nbsp;0b010&nbsp;==&nbsp;2</code>, which corresponds to a pre-scaler of 8.</li>
+<li>Starting the timer then consists of:
+				<ul><li>Set <code>TCCR0A&nbsp;=&nbsp;0;</code></li>
+<li>Set <code>TCCR0B&nbsp;=&nbsp;2;</code></li>
+</ul></li>
+<li>Settng the PWM related register consist of: 
+				<ul>
+				  <li>Set <code>COM0A1</code> in <code>TCCR0A</code>.</li>
+				  <li>Set <code>WGM01, WGM00</code> in <code>TCCR0A</code>.</li>
+<li>Set <code>OCR0A</code> to a value between 0 - 255, this sets the duty cycle.</li>
+</ul>
+</li>
+          </ul>
+		  <p>This procedure is demonstrated in <code>example2.c, PwmTimer0</code>
+		  </p>
+			
+<pre style="line-height: 1; background: #0f140f; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 95%;">
+
+
+<span style="color: #ff0007; font-weight: bold; font-style: italic; background-color: #0f140f">#include &lt;avr/io.h&gt;</span>
+
+
+<span style="color: #cdcaa9; font-weight: bold">int</span> <span style="color: #ff0086; font-weight: bold">main</span><span style="color: #ffffff">(</span><span style="color: #cdcaa9; font-weight: bold">void</span><span style="color: #ffffff">)</span>
+<span style="color: #ffffff">{</span>
+    <span style="color: #ffffff">DDRD</span> <span style="color: #ffffff">|=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">PD6);</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// PD6 is now an output</span>
+
+    <span style="color: #ffffff">OCR0A</span> <span style="color: #ffffff">=</span> <span style="color: #0086f7; font-weight: bold">128</span><span style="color: #ffffff">;</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// set PWM for 50% duty cycle</span>
+
+    <span style="color: #ffffff">TCCR0A</span> <span style="color: #ffffff">|=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">COM0A1);</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// set none-inverting mode</span>
+ 
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// TinkerCAD Errata: timer clocking must be enabled before WGM</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// set prescaler to 8 and starts PWM  </span>
+    <span style="color: #ffffff">TCCR0B</span> <span style="color: #ffffff">=</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">CS01);</span>
+  
+    <span style="color: #ffffff">TCCR0A</span> <span style="color: #ffffff">|=</span><span style="color: #ffffff"></span><span style="color: #0086f7; font-weight: bold"></span><span style="color: #ffffff"></span><span style="color: #ffffff"></span><span style="color: #ffffff"></span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">WGM01)</span> <span style="color: #ffffff">|</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span> <span style="color: #ffffff">&lt;&lt;</span> <span style="color: #ffffff">WGM00);</span>
+    <span style="color: #008800; font-style: italic; background-color: #0f140f">// set fast PWM Mode</span>
+
+
+    <span style="color: #fb660a; font-weight: bold">while</span> <span style="color: #ffffff">(</span><span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">)</span>
+    <span style="color: #ffffff">{</span>
+        <span style="color: #008800; font-style: italic; background-color: #0f140f">// write some code that changes the duty cycle</span>
+    <span style="color: #ffffff">}</span>
+<span style="color: #ffffff">}</span>
+</pre>
+<p>It is recommended you use an oscillospoce and mutimeter to see the effect of the duty cycle.</p>
+<h4><strong>Please note: the order of instructions, in tinkercad the Timer should be started before pwm is started.</strong></h4>
+<p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394134-dt-content-rid-31389818_1/courses/CAB202_20se1/Topic10/www.tinkercad.com">TinkerCad</a> implementation of the program:</p>
+		<p><a href="https://www.tinkercad.com/things/6uUrw5Jl56j">https://www.tinkercad.com/things/6uUrw5Jl56j</a></p>
+		<p>&nbsp;</p>
+		  </div>
+		<h2><a name="software_pwm">Software-Based PWM</a></h2>
+			
+			<div>
+			  <p>PWM signal can also be generate by software. The idea is simple. Define a timer with  interrupt overflow, in the ISR routine increment a variable, then toggle the state of  an output pin comparing this variable with a value used a comparator. This comparator value can be part of you main program. See pseudocode below</p>
+			
+		<pre style="line-height: 1; background: #0f140f; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 95%;">
+#define DELAY_MS 3
+
+volatile uint8_t ISRcounter = 0; /* Count the number of times the ISR has run */
+
+int main(void)
+{
+	//define comparison variable
+	
+	//set output pin
+
+    //configure timer with interrupt overflow
+		
+
+   // enable global interrupts
+
+	while(1){ 		
+		//set or increment comparator variable		
+		_delay_ms(DELAY_MS);
+	}
+	return 0;
+}
+
+ISR(TIMERx_OVF_vect)
+{
+	if(ISRcounter &lt; comparator) {
+		//set pin state high 
+	}else{
+		//set pin state low 
+	}
+
+	ISRcounter++;
+}  </pre>
+			</div>
+		
+			
+		<p>&nbsp;</p>
+		</div>
+        <h3><a name="servos">WORKING WITH SERVOS </a></h3>
+
+<div>
+  <p>Frequency/period are specific to controlling a specific servo. A typical servo motor expects to be updated every 20 ms (at 50Hz) with a pulse between 1 ms and 2 ms, or in other words, between a 5% and 10% duty cycle on a 50 Hz waveform. With a 1.5 ms pulse, the servo motor will be at the natural 90 degree position. </p>
+    <p>With a 1 ms pulse, the servo will be at the 0 degree position, and with a 2 ms pulse, the servo will be at 180 degrees. You can obtain the full range of motion by updating the servo with a value in between.    </p>
+    <p>Please note, that servos should be always calibrated, that is, to obtain either 0, 90, 180 degress the values won't be exactly 1ms, 1.5ms and 2 ms, but instead a value that close to it.</p>
+        <p>The idea is, define a signal that has a period of 20ms (50Hz) using the a timer and prescaler. If the combination of prescaler cannot achieve 50 Hz, pick the next value down, let's say 30Hz (33.3 ms). Then find the TOP count value that gives you 20ms. For example, if 65536 is the top count in 33.3 ms, then 39361 will give you approximately 20 ms. Then define you compare value so the time in the signal spend in high varies between 1ms and 2 ms.</p>
+</div>
+    
+		<hr>
+<h2><a name="exercices">Additional exercices:</a></h2>
+<div class="section"></div>
+	
+	<div class="subsection">
+	  <ol>
+	    <li>Use the ADC to read a potenciometer and use this value to move a servo to a position that proportional to the potentiometer value. </li>
+      </ol>
+	</div>
+	
+	
+	
+
+    
+		<p>&nbsp;</p>
+		<hr>
+		<h2><a name="appendices">Appendices</a></h2>
+		<div class="section">
+			
+			
+
+		
+	
+    
+		<h3><a name="uart_interrupt">Appendix 1: Arduino UNO PIN D0 (PD0) UART RX</a></h3>
+		<div class="subsection">
+			
+			<ul>
+			  <li>The arduino PD0 (D0) RX pin is always high because the output from the USB / serial chip is high when it is not receiving anything. Therefore, connecting switches or any other input to D0 will always read High.</li>
+			</ul>
+		</div>
+		<h3>&nbsp;</h3>
+		<div class="subsection">		  </div> 
+	</div>
+		<hr>
+
+	<p style="text-align:center"><em>The End</em></p>
+	<hr>
+</body></html>

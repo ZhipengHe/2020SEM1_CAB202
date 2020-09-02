@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<!-- saved from url=(0134)https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>CAB202 Topic 8 – Serial Communication</title>
+
+	<style type="text/css">
+		
+			body {
+				max-width: 50em;
+				/* font-family: sans-serif; */
+				margin: auto;
+				line-height: 1.4em;
+				background-color: #F1F1F1;
+			}
+		
+
+		.indent {
+			margin-left: 0.6cm;
+		}
+
+		.codeblock {
+			font-size: +1;
+			font-family: monospace;
+			font-weight: bold;
+			background-color: #303030;
+			color: #dcdcdc;
+			/* font-size: large; */
+		}
+
+		.codeDiv {
+			overflow: scroll;
+			border: 1px solid gray;
+		}
+
+		pre {
+			border: 1px solid gray;
+			padding: 6pt;
+			width: 100%;
+		}
+
+		textarea {
+			margin-top: 6pt;
+		}
+
+		td {
+			/* width: 4in; */
+			vertical-align: top;
+		}
+
+		code {
+			font-size: medium;
+			font-weight: bold;
+		}
+
+		li {
+			margin-bottom: 6pt;
+		}
+
+		li ul {
+			margin-top: 6pt;
+		}
+
+		.section {
+			margin-left: 0.6cm;
+		}
+
+		.subsection {
+			margin-left: 0.6cm;
+		}
+
+		span.li  {display: list-item; margin-left: 0.6cm}
+
+		span.li2  {display: list-item; margin-left: 1.2cm}
+
+		td.truth_table { text-align: center; width: 1cm; vertical-align: middle; }
+
+		div.truth_table_container { display: inline-block; width: 5.5cm; vertical-align: top; text-align: center; }
+		td.truth_value { background-color: #dddddd; }
+	.sc10 {		color: #FFAA00;
+}
+.sc11 {		color: #F8F8F8;
+}
+.sc16 {		color: #FFAA00;
+}
+.sc2 {		color: #1E9AE0;
+}
+.sc4 {		color: #FF3A83;
+}
+.sc9 {		color: cyan;
+}
+    </style>
+</head><body>
+<h1 class="document_title">CAB202 Topic 8 - Serial Communication</h1>
+<p>Authors:</p>
+	<ul>
+	  <li>Luis Mejias, Lawrence Buckingham, QUT (2020)</li>
+</ul>
+	
+    <h2><a name="_contents">Contents</a></h2>
+    
+	<ul>
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#0" title="roadmap">Roadmap</a>
+	
+			
+	
+	
+	
+	
+	</li>
+		
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#1" title="references">References</a>
+	
+			
+	
+	
+	
+	
+	</li>
+		
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#2" title="intro">Serial Communication Introduction</a></li>
+		
+			<li> 
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3" title="uart">UART (Universal Asynchronous Receiver-Transmitter)</a>
+	
+			
+	
+	
+	    <ul>
+			    <li>
+    
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3.1" title="uart_intro">Introduction</a>
+    
+    
+					</li>
+	        
+			    <li>
+    
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3.2" title="uart_reg_usage"><code>UART</code> register usage</a>
+    
+    
+					</li>
+	        
+			    <li>
+    
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3.3" title="uart_programming"><code>UART</code> hardware programming</a>
+    
+    
+					</li>
+	        
+			    <li>
+    
+	<a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3.4" title="uart_hello">Case Study - Bidirectional communication between a microcontroller and serial console</a></li>
+			    <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#3.5">Case Study -  Bidirectional communication between two microcontrollers</a></li>
+	        </ul>
+	
+	
+	
+	</li>
+		
+	  <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#4">Addititonal exercices</a></li>
+	  <li><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/CAB202-Topic8-Notes.html#5">Summary</a></li>
+		
+    	</ul>
+
+	<hr>
+	
+	
+
+    
+		<h2><a name="0">Roadmap</a></h2>
+		<div class="section">
+		<p><em>Previously:</em></p>
+		<ol start="7"><li>
+		  <p>AVR ATMega328P Introduction to Microcontrollers; Digital Input/Output.</p>
+		</li>
+</ol>
+		<p><em>This week:</em></p>
+		<ol start="8">
+		  <li><strong>Serial Communication - communicating with another computer/microcontroller</strong></li>
+</ol>
+		<p><em>Still to come:</em></p>
+		<ol start="9"><li>Debouncing, Timers and Interrupts.  Asynchronous programming.</li>
+		  <li>Analogue to Digital Conversion; Pulse Width Modulation (PWM); Assignment 2 Q&amp;A.</li>
+		  <li>LCD Display, sending digital signals to a device.</li>
+        </ol>
+		</div>
+		<hr>
+	
+	
+
+    
+		<h2><a name="1">References</a></h2>
+		<div class="section">
+		<p>Recommended reading:</p>
+
+		<ul>
+		  <li>Blackboard&#8594;Learning Resources&#8594;Microcontrollers&#8594;atmega328P datasheet.pdf.</li>
+</ul>
+	</div>
+		<hr>
+	
+	
+
+    
+		<h2><a name="2">Serial Communication Introduction</a></h2>
+		<div class="section"> <ul><li>Serial Communication is a way for two or more electronic devices to exchange data.</li>
+<li><font _mstmutation="1">Electrical connections between devices are made by connecting a pin on one device to a pin on the other device.
+			</font><ul><li>If the components are mounted on the same PCB, the pins are connected via a conductive path.</li>
+<li>If the pins are on physically separate devices, wire is typically used.</li>
+</ul></li>
+<li>To transmit data, a voltage is applied to the connection(s) at one end and detected at the other end.</li>
+<li>Large payloads are sent as a sequence of bytes.</li>
+<li><font _mstmutation="1">A byte is transmitted as a packet or frame, which may include:
+			</font><ul><li>A bit pattern indicating the start of the byte.</li>
+<li>The content of the byte, as 8 (or in some applications, 7) bits.</li>
+<li>A bit pattern indicating the end of the byte.</li>
+<li>The packet may include information to help detect transmission errors.</li>
+</ul></li>
+<li><font _mstmutation="1">The packet is sent one bit at a time.
+			</font><ul><li>The sender must extract each bit from the packet to be transmitted, and send the bit.</li>
+<li>The bit is sent by holding the voltage steady (high or low) on the line for an agreed period of time.</li>
+<li>During the agreed period, the receiver reads the state of the line, and interprets the voltage as a 0 or 1.</li>
+<li>The receiver then builds up a model of the packet which matches the packet being sent.</li>
+</ul></li>
+<li><font _mstmutation="1">As well as a data link, communicating devices need to agree on timing to allow the receiver to decide  when each bit starts and stops.
+			</font><ul><li>Without some kind of shared time-frame, there is no way to tell when one bit begins and the next ends.</li>
+<li><font _mstmutation="1">Sometimes there will be transitions when a 1 is followed by a 0, or a 0 is followed by a 1. This is  ambiguous. For example, consider a slow signal () compared with a fast signal (). The content is very different, but they both look the same on the data line.</font><code>1010</code><code>11001100</code></li>
+<li>A range of strategies are adopted (each protocol has its own way) to enable the receiver and transmitter to establish a common time frame.</li>
+</ul></li>
+</ul>
+	</div>
+		<div class="section"></div>
+<div class="section">
+  <div class="subsection"></div> 
+
+	</div>
+		<hr>
+	
+	
+
+    
+		<h2><a name="3">UART (Universal Asynchronous Receiver-Transmitter)</a></h2>
+		<div class="section">
+		
+	
+    
+		<h3><a name="3.1">Introduction</a></h3>
+		<div class="subsection"> <ul>
+<li>Reference: Data sheet, Chapter 20 (Pages 179–204).</li>
+<li><font _mstmutation="1">The niversal synchronous eceiver-ransmitter () is a dedicated circuit integrated into the microcontroller.
+			</font><code>U</code><code>A</code><code>R</code><code>T</code><code>UART</code><ul>
+<li><code>UART</code><font _mstmutation="1"> is can be used for direct communication with another device (e.g. another microncontroller).</font></li>
+<li><font _mstmutation="1">Bidirectional data transfer is possible because each device has a  (transmit) and  (receive) pin.</font><code>TX</code><code>RX</code></li>
+<li><font _mstmutation="1">Connect  on one device to  on the other, and vice-versa.				</font><code>TX</code><code>RX</code></li>
+</ul>
+        <img src="./CAB202 Topic 8 – Serial Communication_files/fig1.png" width="294" height="87" alt=""></li>
+</ul>
+		  <p>&nbsp;</p>
+		  <ul>
+  <li>
+    <div><p><font _mstmutation="1">A  data frame looks like this (the lines cross over to indicate possible transitions between low and high states):</font><code>UART</code></p>
+      <p><img src="./CAB202 Topic 8 – Serial Communication_files/fig2.png" width="701" height="71" alt=""></p>
+    </div></li>
+  </ul>
+		  <p>&nbsp;</p>
+		  <ul>
+		    <li><font _mstmutation="1">To transmit a byte using UART:
+		      </font><ul><li>Bits are transmitted holding the line high (1) or low (0) for a fixed duration of <em>&#948;t</em> seconds.</li>
+		        <li>The line is initially held high, indicating that it is idle.</li>
+		        <li>At the start of the transmission, the line transitions from high to low, where it stays for <em>&#948;t</em> seconds. This is called the <em>start bit</em>.</li>
+		        <li>Then each bit is signalled in turn, usually least significant bit first.</li>
+		        <li>A parity bit may be sent after the data bits. If used, the sum of the bits in the frame plus the parity bit should always be even. Otherwise, the data is corrupt.</li>
+		        <li>Finally, the line reverts to high for at least <em>&#948;t</em> seconds. This signals the end of the byte. It is called the <em>stop bit</em>.</li>
+            </ul></li>
+		    <li><code>UART</code><font _mstmutation="1"> does not use a clock signal. Instead, both devices must be set to use a common timeframe.
+		      </font><ul><li>This is done by deciding on a fixed speed which will be used for transmission.</li>
+		        <li>Both devices must be set to use this speed setting.</li>
+		        <li>The transmission speed is called the <em>baud rate</em>. It measures the number of bits per second that will be transmitted.</li>
+		        <li>Normal baud rates are: 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, or 115200. </li>
+		        <li>If one device is set to a different baud rate than the other the signal will not be received intact.</li>
+            </ul></li>
+	      </ul>
+		</div> 
+
+		
+	
+    
+		<h3><a name="3.2"><code>UART</code> register usage</a></h3>
+		<div class="subsection"> <ul><li><code>UART</code><font _mstmutation="1"> register usage is as follows.</font></li>
+<li><code>UDR0</code><font _mstmutation="1"> – I/O Data Register (8 bits)
+			</font><ul><li>Transmit data buffer and Receive data buffer map to a common address in RAM.</li>
+<li>Reading the register returns the contents of the Receive Data buffer.</li>
+<li><font _mstmutation="1">Writing to this address places data in the Transmit Data buffer.
+				</font><ul>
+				  <li><font _mstmutation="1">The  bit must be set to enable data transmission (see  below).</font><code>UDRE0</code><code>UCSR0A</code></li>
+</ul></li>
+</ul></li>
+<li><code>UCSR0A</code><font _mstmutation="1"> – USART Control and Status Register 0 A</font></li>
+<img src="./CAB202 Topic 8 – Serial Communication_files/fig3.png" width="701" height="108" alt="">
+
+  <table cellspacing="0" border="1" cellpadding="3">
+    <tbody><tr><td>Pin</td><td>Name</td><td>Interpretation</td></tr>
+    <tr><td>7</td>
+      <td><code>RXC0</code></td>
+      <td><font _mstmutation="1">USART Receive Complete flag – can generate an Receive Complete interrupt (see  bit).</font><code>RXCIE0</code></td></tr>
+    <tr><td>6</td>
+      <td><code>TCX0</code></td><td>USART Transmit Complete flag – can generate Transmit Complete interrupt.</td></tr>
+    <tr><td>5</td>
+      <td><code>UDRE0</code></td>
+      <td><font _mstmutation="1">USART Data Register Empty – transmit buffer is ready to receive new data. Can generate a Data Register Empty interrupt (see  bit).</font><code>UDRIE0</code></td></tr>
+    <tr><td>4</td>
+      <td><code>FE0</code></td>
+      <td><font _mstmutation="1">Frame Error – always clear this bit when writing to  (this register).</font><code>UCSR0A</code></td></tr>
+    <tr><td>3</td>
+      <td><code>DOR0</code></td>
+      <td><font _mstmutation="1">Data Overrun  – always clear this bit when writing to  (this register).</font><code>UCSR0A</code></td></tr>
+    <tr><td>2</td>
+      <td><code>UPE0</code></td>
+      <td><font _mstmutation="1">USART Parity Error – always clear this bit when writing to  (this register).</font><code>UCSR0A</code></td></tr>
+    <tr><td>1</td>
+      <td><code>U2X0</code></td><td>Double transmission speed: 0 &#8594; Normal speed; 1 &#8594; Double speed.</td></tr>
+    <tr><td>0</td>
+      <td><code>MPCM0</code></td><td>Multi-processor Communication Mode.</td></tr>
+    </tbody></table>
+
+			<p></p>
+<li><code>UCSR0B</code><font _mstmutation="1"> – USART Control and Status Register 0 B</font></li>
+<img src="./CAB202 Topic 8 – Serial Communication_files/fig4.png" width="703" height="90" alt="">
+
+  <table cellspacing="0" border="1" cellpadding="3">
+    <tbody><tr><td>Pin</td><td>Name</td><td>Interpretation</td></tr>
+    <tr><td>7</td>
+      <td><code>RXCIE0</code></td><td>RX Complete Interrupt Enable.</td></tr>
+    <tr><td>6</td>
+      <td><code>TXCIE0</code></td><td>TX Complete Interrupt Enable.</td></tr>
+    <tr><td>5</td>
+      <td><code>UDRIE0</code></td><td>USART Data Register Empty Interrupt Enable.</td></tr>
+    <tr><td>4</td>
+      <td><code>RXEN0</code></td><td>Receiver enable.</td></tr>
+    <tr><td>3</td>
+      <td><code>TXEN0</code></td><td>Transmitter enable.</td></tr>
+    <tr><td>2</td>
+      <td><code>UCSZ02</code></td>
+      <td><font _mstmutation="1">Character Size bit 2 (combined with  and ).</font><code>UCSZ01</code><code>UCSZ00</code></td></tr>
+    <tr><td>1</td>
+      <td><code>RXB80</code></td><td>Receive data bit 8 – the ninth bit of a 9-bit character received (when operating with 9-bit characters).</td></tr>
+    <tr><td>0</td>
+      <td><code>TXB80</code></td><td>Transmit data bit 8 – the ninth bit of a 9-bit character (when operating with 9-bit characters).</td></tr>
+  </tbody></table>
+
+			<p></p>
+<li><code>UCSR0C</code><font _mstmutation="1"> – control and Status Register 0 C</font></li>
+<img src="./CAB202 Topic 8 – Serial Communication_files/fig5.png" width="705" height="92" alt="">
+
+
+  <table cellspacing="0" border="1" cellpadding="3">
+    <tbody><tr><td>Pin</td><td>Name</td><td>Interpretation</td></tr>
+    <tr><td>7</td>
+      <td><code>UMSEL01</code></td><td>USART mode select  bit 1.</td></tr>
+    <tr><td>6</td>
+      <td><code>UMSEL00</code></td>
+      <td><font _mstmutation="1">USART mode select  bit 0: combine with .
+        </font><code>UMSEL01</code><table cellspacing="0" border="1" cellpadding="3">
+          <tbody><tr>
+            <td><code>UMSEL01</code></td> <td><code>UMSEL00</code></td> <td>Mode</td> </tr>
+          <tr><td><code>0</code></td> <td><code>0</code></td> <td>Asynchronous</td> </tr>
+          <tr><td><code>0</code></td> <td><code>1</code></td> <td>Synchronous</td> </tr>
+          <tr><td><code>1</code></td> <td><code>1</code></td> <td>Master SPI</td> </tr>
+          </tbody></table></td></tr>
+    <tr><td>5</td>
+      <td><code>UPM01</code></td><td>Parity mode, bit 1.</td></tr>
+    <tr><td>4</td>
+      <td><code>UPM00</code></td>
+      <td><font _mstmutation="1">Parity mode, bit 0: combine with .
+        </font><code>UPM01</code><table cellspacing="0" border="1" cellpadding="3">
+          <tbody><tr>
+            <td><code>UPM01</code></td> <td><code>UPM00</code></td> <td>Mode</td> </tr>
+          <tr><td><code>0</code></td> <td><code>0</code></td> <td>Disabled</td> </tr>
+          <tr><td><code>1</code></td> <td><code>0</code></td> <td>Even parity</td> </tr>
+          <tr><td><code>1</code></td> <td><code>1</code></td> <td>Odd parity</td> </tr>
+          </tbody></table></td></tr>
+    <tr><td>3</td>
+      <td><code>USBS0</code></td><td>Stop bits: 0 &#8594; 1 stop bit; 1 &#8594; 2 stop bits.</td></tr>
+    <tr><td>2</td>
+      <td><code>UCSZ01</code></td><td>Character size bit 1.</td></tr>
+    <tr><td>1</td>
+      <td><code>UCSZ00</code></td>
+      <td><font _mstmutation="1">Character size bit 0. Combine with  and .
+        </font><code>UCSZ01</code><code>UCSZ02</code><table cellspacing="0" border="1" cellpadding="3">
+          <tbody><tr>
+            <td><code>UCSZ02</code></td> <td><code>UCSZ01</code></td> <td><code>UCSZ00</code></td> <td>Character size</td> </tr>
+          <tr><td><code>0</code></td>      <td><code>0</code></td>      <td><code>0</code></td>      <td>5 bits</td>          </tr>
+          <tr><td><code>0</code></td>      <td><code>0</code></td>      <td><code>1</code></td>      <td>6 bits</td>         </tr>
+          <tr><td><code>0</code></td>      <td><code>1</code></td>      <td><code>0</code></td>      <td>7 bits</td>         </tr>
+          <tr><td><code>0</code></td>      <td><code>1</code></td>      <td><code>1</code></td>      <td>8 bits</td>         </tr>
+          <tr><td><code>1</code></td>      <td><code>1</code></td>      <td><code>1</code></td>      <td>9 bits</td>         </tr>
+          </tbody></table></td></tr>
+    <tr><td>0</td>
+      <td><code>UCPOL0</code></td><td><font _mstmutation="1">Clock polarity.
+        </font><table cellspacing="0" border="1" cellpadding="3">
+          <tbody><tr>
+            <td><code>UCPOL0</code></td> <td>Output to TxD1 pin</td> <td>Input sampled on RxD1 pin</td> </tr>
+          <tr><td><code>0</code></td>      <td>Rising edge</td>        <td>Falling edge</td>              </tr>
+          <tr><td><code>1</code></td>      <td>Falling edge</td>       <td>Rising edge</td>               </tr>
+          </tbody></table></td></tr>
+  </tbody></table>
+
+<p></p>
+<li><code>UBRR0L and UBRR0H</code><font _mstmutation="1"> – USART Baud Rate Registers.</font></li>
+<img src="./CAB202 Topic 8 – Serial Communication_files/fig6.png" width="707" height="159" alt="">
+<p></p>
+			
+  <ul><li>A two-byte (16 bit) register which is used to define the baud rate.</li>
+    <li>12 bits are used.</li>
+    <li><font _mstmutation="1">Optimal values of  for a CPU running at 16MHz are listed in the table 20-1on page 182 of the datasheet. Fairly accurate approximations are obtained with the formulae:</font><code>UBRR0</code></li>
+    
+    <p>&nbsp;</p>
+    <table width="448" border="1" cellpadding="3" cellspacing="0">
+    <tbody><tr><td width="127">Mode</td><td width="284">Equation</td></tr>
+    <tr><td>Async normal</td>
+      <td><code>UBRR0&nbsp;=&nbsp;(F_CPU/16/<code>BAUD)</code>&nbsp;-&nbsp;1</code></td></tr>
+    <tr><td>Async double speed</td>
+      <td><code>UBRR0&nbsp;=&nbsp;(F_CPU/8/<code>BAUD</code>)&nbsp;-&nbsp;1</code></td></tr>
+    <tr><td>Sync master mode</td>
+      <td><code>UBRR0&nbsp;=&nbsp;(F_CPU/2/<code>BAUD)</code></code> <strong>- 1</strong></td></tr></tbody></table>
+    <p>Here, F_CPU is 16MHz (16000000UL) and BAUD any of the following 300, 600, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, or 115200. </p>
+    
+  </ul>
+
+        </ul>
+
+		</div> 
+
+		
+	
+    
+		<h3><a name="3.3"><code>UART</code> hardware programming</a></h3>
+		<div class="subsection"> <ul><li><font _mstmutation="1">Once the  control registers have been configured, the programming model is extremely simple.</font><code>UART</code></li>
+<li>For general purpose usage, an Init, Transmit and Receive functions are anough for most applications.</li>
+<li>The sample code below is an example how to implement each of these functions. </li>
+<li><font _mstmutation="1">To initialise :
+  </font><code>UART</code><div class="subsection">
+    <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">
+void </span><span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr){
+
+    UBRR0H</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr&gt;&gt;</span><span class="sc4">8</span><span class="sc11">);</span><span class="sc10"><br>    </span><span class="sc11">UBRR0L</span><span class="sc10"> </span><span class="sc11">=</span><span class="sc10"> </span><span class="sc11">(</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr);<br>	UCSR0B</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; RXEN0) | (</span><span class="sc4">1</span><span class="sc10"> </span><span class="sc11">&lt;&lt; TXEN0)</span><span class="sc4"></span><span class="sc10"></span><span class="sc11"></span><span class="sc10">;<br>	</span><span class="sc11">UCSR0C</span><span class="sc10"> </span><span class="sc11">= </span><span class="sc4"></span><span class="sc11">(</span><span class="sc4">3 </span><span class="sc11">&lt;&lt; UCSZ00);</span><span class="sc10"><br>	<br></span><span class="sc11">}</span><span class="sc10">
+</span>      </pre>
+  </div>
+  <p>What this does:</p>
+  <ol>
+    <li><font _mstmutation="1">Set  using the formula above. ubrr is the argument that result from the formula (table above).</font><code>UBRR0</code></li>
+    <li><font _mstmutation="1">Enable receive, transmit, and the receive-complete interrupt.
+      </font><ul>
+        <li>A receive-complete interrupt handler is also implemented (not shown here).</li>
+        </ul>
+    </li>
+    <li>Set character size to 8 bits.    </li>
+  </ol>
+</li>
+<li>To send  characters to a connected device:</li>
+
+  <div class="subsection">
+    <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data){
+
+  </span><span class="sc11"><br>   </span><span class="sc2">while</span><span class="sc11"> (!( UCSR0A &amp; (1&lt;&lt;UDRE0))); </span><span class="sc16">/* Wait for empty transmit buffer*/</span><span class="sc11">
+<br>          UDR0 = data;            </span><span class="sc16">/* Put data into buffer, sends the data */</span><span class="sc11"><br>                                     </span><span class="sc16"></span><span class="sc11"></span><span class="sc10"><br>	<br></span><span class="sc11">}</span>      </pre>
+  </div>
+  <p>What this does:</p>
+  <ol><li>Waits until there is room in the transmit buffer for another character.</li>
+    <li>Copy characters to the I/O <strong>UDR0</strong> data register </li>
+  </ol>
+
+<li>To receive one character from a connected device:		  </li>
+<div class="subsection">
+  <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">){
+
+	</span><span class="sc2">while</span><span class="sc11"> ( !(UCSR0A &amp; (1&lt;&lt;RXC0)));
+
+ </span><span class="sc2">return </span><span class="sc11">UDR0;</span><span class="sc10"><br>	<br></span><span class="sc11">}</span>     </pre>
+</div>
+
+  <p>What this does:</p>
+  <ol>
+    <li>Waits for character to become available in receive buffer.</li>
+    <li>Returns the data regiter</li>
+  </ol>
+		</ul>
+		</div> 
+		
+		
+	
+    
+		<h3><a name="3.4">Case Study – Bidirectional communication between a microcontroller and serial</a> console</h3>
+		<div class="subsection"><ul>
+<li><font _mstmutation="1">A sample program, , is listed below.
+          </font><code>uart_example1.c</code><blockquote>
+            <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 100%;"><span class="sc10">
+/* File: uart_example1.c<br> * Description: C program for the ATMEL AVR microcontroller (ATmega328 chip)<br> * Send characters via serial and receives characters from serial console<br> * <br> * Includes (pretty much compulsory for using the Teensy this semester)<br> * 	- avr/io.h: port and pin definitions (i.e. DDRB, PORTB, PB1, etc)<br> *<br> */
+
+<span class="sc2">#define</span><span class="sc11"> F_CPU </span><span class="sc4">16000000UL</span>
+// AVR header file for all registers/pins
+</span><span class="sc2">#include </span><span class="sc4">&lt;avr/io.h&gt; </span><span class="sc10">
+
+</span><span class="sc16">*  Setting data directions in a data direction register (DDR)<br> *<br> *<br> *  Setting, clearing, and reading bits in registers.<br> *	reg is the name of a register; pin is the index (0..7)<br> *  of the bit to set, clear or read.<br> *  (WRITE_BIT is a combination of CLEAR_BIT &amp; SET_BIT)<br> */</span>
+
+<span class="sc2">#define</span><span class="sc11"> SET_BIT(reg, pin)			(reg) |= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br></span><span class="sc2">#define</span><span class="sc11"> CLEAR_BIT(reg, pin)			(reg) &amp;= ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br></span><span class="sc2">#define</span><span class="sc11"> WRITE_BIT(reg, pin, value)	(reg) = (((reg) &amp; ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))) | ((value) &lt;&lt; (pin)))<br></span><span class="sc2">#define</span><span class="sc11"> BIT_VALUE(reg, pin)			(((reg) &gt;&gt; (pin)) &amp; </span><span class="sc4">1</span><span class="sc11">)<br></span><span class="sc2">#define</span><span class="sc11"> BIT_IS_SET(reg, pin)		(BIT_VALUE((reg),(pin))==</span><span class="sc4">1</span><span class="sc11">)</span><span class="sc16">
+
+//Functions declaration
+<span class="sc2">void </span><span class="sc11">setup(<span class="sc2">void</span>)</span></span><span class="sc11">;</span><span class="sc16">
+<span class="sc2">void</span> <span class="sc11">process(</span><span class="sc2">void</span><span class="sc11">)</span></span><span class="sc11">;</span><span class="sc16">
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void</span> <span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr);</span></span>
+<span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">);</span>
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data);</span></span>
+
+
+//UART definitions
+//define baud rate 
+</span><span class="sc2">#define</span><span class="sc11"> BAUD </span><span class="sc4">9600</span><span class="sc9"><br></span><span class="sc2">#define</span><span class="sc9"> </span><span class="sc11">MYUBRR F_CPU/</span><span class="sc4">16</span><span class="sc11">/BAUD-</span><span class="sc4">1</span>
+
+<span class="sc16">//receiving buffer</span>
+<span class="sc4">unsigned char</span> <span class="sc11">rx_buf;</span>
+<span class="sc2">
+void </span><span class="sc11">setup(<span class="sc2">void</span>) {</span>
+    
+    <span class="sc16">// initialise uart </span>
+    <span class="sc11">uart_init(MYUBRR);</span>
+    
+    <span class="sc16">// Enable B5 as output, led on B5</span><br>	<span class="sc11">SET_BIT(DDRB, </span><span class="sc4">5</span><span class="sc11">);</span>
+<span class="sc11">}</span>
+
+
+<span class="sc2">void</span> <span class="sc11">process(</span><span class="sc2">void</span><span class="sc11">) {</span><br>  <br>   <span class="sc16">//define a character to sent</span><br>    <span class="sc4">static char</span> <span class="sc11">sent_char</span> = <span class="sc4">'a'</span>;<span class="sc16"></span><span class="sc11"></span><span class="sc2"></span><span class="sc11"></span><br>   <span class="sc16">//send serial data</span><br>	<span class="sc11">uart_putchar(sent_char);</span><br>    <span class="sc16">//receive serial data</span><br>    <span class="sc11">rx_buf = uart_getchar(); </span><br>  <br>  	<span class="sc16">//toggle the LED to indicate data has been received</span><br> <span class="sc2"> 	if </span><span class="sc11">(rx_buf ==</span><span class="sc4">'a'</span><span class="sc11">)<br>      	PORTB ^= (</span><span class="sc4">1</span><span class="sc11">&lt;&lt;PB5);</span><br>  <br>   <span class="sc11"> sent_char++;</span><br>  <span class="sc16"> //reset and start from 'a' again</span><br><span class="sc2">	if </span><span class="sc11">( sent_char &gt;</span> <span class="sc4">'z'</span> <span class="sc11">) sent_char =</span> <span class="sc4">'a'</span>;<br>  <br>  <br>}
+
+<span class="sc2">int</span><span class="sc11"> main(void) {
+    
+    setup();
+     </span><span class="sc2"> for</span><span class="sc11"> ( ;; ) {<br>		process();<br>		_delay_ms(</span><span class="sc4">100</span><span class="sc11">);<br>	}
+}</span>
+
+<span class="sc16">/*  ****** serial definitions ************ */
+// Initialize the UART
+</span><span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void</span></span><span class="sc16"><span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"> <span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr){
+
+    UBRR0H</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr&gt;&gt;</span><span class="sc4">8</span><span class="sc11">);</span><span class="sc10"><br>    </span><span class="sc11">UBRR0L</span><span class="sc10"> </span><span class="sc11">=</span><span class="sc10"> </span><span class="sc11">(</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr);
+    UCSR0B</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; RXEN0) | (</span><span class="sc4">1</span><span class="sc10"> </span><span class="sc11">&lt;&lt; TXEN0)</span><span class="sc10">;
+    </span><span class="sc11">UCSR0C</span><span class="sc10"> </span><span class="sc11">=</span><span class="sc4"></span><span class="sc11">(</span><span class="sc4">3 </span><span class="sc11">&lt;&lt; UCSZ00);</span><span class="sc10"><br>	
+    <br>
+    </span><span class="sc11">}</span></span>
+
+//transmit data
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data){
+<br>   </span><span class="sc2">while</span><span class="sc11"> (!( UCSR0A &amp; (1&lt;&lt;UDRE0))); </span></span>/* Wait for empty transmit buffer*/<span class="sc11">
+<br>     UDR0 = data;            </span>/* Put data into buffer, sends the data */<span class="sc11"><br>                                     </span><span class="sc10"><br>	<br></span><span class="sc11">}</span></span><span class="sc16">
+
+//receive data
+<span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">){
+  </span></span><span class="sc16"><span class="sc11">
+  </span>/* Wait for data to be received */<span class="sc11"> <br>    </span></span><span class="sc2">while</span><span class="sc16"><span class="sc11"> ( !(UCSR0A </span></span><span class="sc4">&amp;</span><span class="sc16"><span class="sc11"> (</span></span><span class="sc4">1</span><span class="sc16"><span class="sc11">&lt;&lt;RXC0)) )</span></span><span class="sc4"></span><span class="sc16"><span class="sc11"></span></span><span class="sc4"></span><span class="sc16"><span class="sc11">;
+  <br>
+  </span><span class="sc2">return </span><span class="sc11">UDR0;</span><span class="sc10"><br>	<br></span><span class="sc11">}</span></span></pre>
+          </blockquote>
+</li>
+<li><font _mstmutation="1">In this program, a microcontroller devices talk to a serial console  over the  connection.
+			</font><code>UART</code><ul><li><font _mstmutation="1">In :
+				</font><code>setup</code><ul><li><code>UART</code><font _mstmutation="1"> is initialised, running at 9600 bits per second.</font></li>
+</ul></li>
+<li><font _mstmutation="1">Each time  is called:
+				</font><code>process</code><ul>
+				  <li><font _mstmutation="1">An incrementing character is sent  via .</font><code>uart_putchar</code></li>
+<li><font _mstmutation="1">Characters are received via .</font><code>uart_getchar</code></li>
+<li>The received character is used to turn an LED on.</li>
+<li>Note this code is blocking in the sense that process will stop at get_char() until a character is received.</li>
+            </ul>
+</li>
+</ul>
+</li>
+</ul>
+		  <p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/www.tinkercad.com">TinkerCad </a>version of this program: </p>
+		  <p><a href="https://www.tinkercad.com/things/5MhUMk8uAzR">https://www.tinkercad.com/things/5MhUMk8uAzR</a></p>
+		  <p>&nbsp;</p>
+		  <p><a href="./CAB202 Topic 8 – Serial Communication_files/fig7.png" target="new"><img src="./CAB202 Topic 8 – Serial Communication_files/fig7.png" width="755" height="332" alt=""></a></p>
+		  <p>&nbsp;</p>
+		  <p>&nbsp;</p>
+		</div> 
+	</div>
+		<hr>
+<!--
+    
+		<h3>&nbsp;</h3>
+		<h3><a name="usb_sprite">Control a sprite on Teensy from your computer (usb_sprite.c)</a></h3>
+		<div class="subsection"> <ul ><li >Here we read a sequence of characters via USB serial and try to interpret them as commands to move a sprite on the Teensy LCD: <code>usb_sprite.c</code>.
+			<div ><textarea style="background-color: #303088; color: #dcdcdc; overflow: auto; white-space: pre; word-wrap: normal; overflow-x: scroll; font-family: monospace; max-width: 100%;" rows="20" cols="80" readonly="readonly">/*
+**	usb_sprite.c
+**
+**	Control a Sprite on Teensy via joystick or USB serial.
+**
+**	Lawrence Buckingham, QUT, October 2017.
+**	(C) Queensland University of Technology.
+*/
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;avr/io.h&gt; 
+#include &lt;avr/interrupt.h&gt;
+#include &lt;util/delay.h&gt;
+#include &lt;cpu_speed.h&gt;
+#include &lt;macros.h&gt;
+#include &lt;graphics.h&gt;
+#include &lt;sprite.h&gt;
+
+#include "usb_serial.h"
+
+typedef enum { false, true } bool;
+
+void setup(void);
+void setup_hero(void);
+void setup_joystick(void);
+void setup_usb_serial(void);
+void usb_serial_send(char * message);
+void usb_serial_send_int(int value);
+void process(void);
+
+//-------------------------------------------------------------------
+
+int main(void) {
+	setup();
+
+	for ( ;; ) {
+		process();
+	}
+}
+//-------------------------------------------------------------------
+
+Sprite hero;
+
+void process(void) {
+	int dx = 0, dy = 0;
+
+	if ( BIT_IS_SET(PIND, 1) ) dy = -1;
+	if ( BIT_IS_SET(PINB, 7) ) dy = 1;
+	if ( BIT_IS_SET(PINB, 1) ) dx = -1;
+	if ( BIT_IS_SET(PIND, 0) ) dx = 1;
+
+	if ( usb_serial_available() ) {
+		int c = usb_serial_getchar();
+		if ( c == 'a' ) dx = -1;
+		if ( c == 'd' ) dx = +1;
+		if ( c == 's' ) dy = +1;
+		if ( c == 'w' ) dy = -1;
+	}
+
+	if ( dx || dy ) {
+		hero.x += dx;
+		hero.y += dy;
+		clear_screen();
+		sprite_draw(&amp;hero);
+		show_screen();
+		usb_serial_send("Moved hero to (");
+		usb_serial_send_int((int)hero.x);
+		usb_serial_putchar(',');
+		usb_serial_send_int((int)hero.y);
+		usb_serial_send(")\r\n");
+	}
+}
+
+//-------------------------------------------------------------------
+
+void setup(void) {
+	set_clock_speed(CPU_8MHz);
+	lcd_init(LCD_DEFAULT_CONTRAST);
+	setup_usb_serial();
+	setup_hero();
+	setup_joystick();
+}
+
+//-------------------------------------------------------------------
+
+void setup_hero(void) {
+	static uint8_t bitmap[] = {
+		0b00111100,
+		0b01000010,
+		0b10100101,
+		0b10000001,
+		0b10100101,
+		0b10011001,
+		0b01000010,
+		0b00111100,
+	};
+	int W = 8, H = 8;
+	sprite_init(&amp;hero, (LCD_X - W) / 2, (LCD_Y - H) / 2, W, H, bitmap);
+	clear_screen();
+	sprite_draw(&amp;hero);
+	show_screen();
+}
+
+//-------------------------------------------------------------------
+
+void setup_joystick(void) {
+	CLEAR_BIT(DDRD, 1);
+	CLEAR_BIT(DDRB, 7);
+	CLEAR_BIT(DDRB, 1);
+	CLEAR_BIT(DDRD, 0);
+}
+
+// ---------------------------------------------------------
+//	USB serial business.
+// ---------------------------------------------------------
+
+void setup_usb_serial(void) {
+	// Set up LCD and display message
+	lcd_init(LCD_DEFAULT_CONTRAST);
+	draw_string(10, 10, "Connect USB...", FG_COLOUR);
+	show_screen();
+
+	usb_init();
+
+	while ( !usb_configured() ) {
+		// Block until USB is ready.
+	}
+
+	clear_screen();
+	draw_string(10, 10, "USB connected", FG_COLOUR);
+	show_screen();
+
+	usb_serial_send("Please press W A S D to control the sprite!\r\n");
+}
+
+/*
+**	Transmits a string via usb_serial.
+*/
+void usb_serial_send(char * message) {
+	// Cast to avoid "error: pointer targets in passing argument 1 
+	//	of 'usb_serial_write' differ in signedness"
+	usb_serial_write((uint8_t *) message, strlen(message));
+}
+
+/*
+**	Transmits an integer value via usb_serial.
+*/
+
+void usb_serial_send_int(int value) {
+	static char buffer[8];
+	snprintf(buffer, sizeof(buffer), "%d", value);
+	usb_serial_send( buffer );
+}
+
+//-------------------------------------------------------------------
+</textarea>
+				</div></li>
+<li >Start the program on your Teensy, then open a Putty/screen session.</li>
+<li >Type letters in your terminal (A = left, W = up, D = right, S = down), and the sprite should move on the LCD.</li>
+</ul></div> 
+
+		
+	
+    
+		<h3><a name="usb_controller">Control a sprite on your computer from your Teensy (usb_game_controller.c + usb_zdk.c)</a></h3>
+		<div class="subsection"> <ul ><li >In this two-part application, we turn the TeensyPewPew into a rudimentary game controller, and use it to control a sprite on the desktop computer.</li>
+<li >The Teensy program (<code>usb_game_controller.c</code>) reads the joystick pins and sends a character .
+			<div ><textarea style="background-color: #303088; color: #dcdcdc; overflow: auto; white-space: pre; word-wrap: normal; overflow-x: scroll; font-family: monospace; max-width: 100%;" rows="20" cols="80" readonly="readonly">/*
+**	usb_game_controller.c
+**
+**	A simple TeensyPewPew app which sends encoded joystick
+**	signals to desktop via USB.
+**
+**	Lawrence Buckingham, QUT, October 2017.
+**	(C) Queensland University of Technology.
+*/
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;avr/io.h&gt; 
+#include &lt;avr/interrupt.h&gt;
+#include &lt;util/delay.h&gt;
+#include &lt;cpu_speed.h&gt;
+#include &lt;macros.h&gt;
+#include &lt;graphics.h&gt;
+#include &lt;sprite.h&gt;
+
+#include "usb_serial.h"
+
+void setup(void);
+void setup_joystick(void);
+void setup_usb_serial(void);
+void usb_serial_send(char * message);
+void process(void);
+
+//-------------------------------------------------------------------
+
+int main(void) {
+	setup();
+
+	for ( ;; ) {
+		process();
+	}
+}
+//-------------------------------------------------------------------
+
+void process(void) {
+	clear_screen();
+	draw_string(0, 0, "USB controller", FG_COLOUR);
+
+	int key_code = -1;
+
+	if ( BIT_IS_SET(PIND, 1) ) key_code = 'w';
+	if ( BIT_IS_SET(PINB, 7) ) key_code = 's';
+	if ( BIT_IS_SET(PINB, 1) ) key_code = 'a';
+	if ( BIT_IS_SET(PIND, 0) ) key_code = 'd';
+
+	if ( key_code &gt; 0 ) {
+		draw_string(0, 10, "TX:", FG_COLOUR);
+		draw_char(3 * 5, 10, key_code, FG_COLOUR);
+		usb_serial_putchar(key_code);
+	}
+
+	int16_t rx = usb_serial_getchar();
+
+	if ( rx &gt; 0 ) {
+		draw_string(0, 20, "RX:", FG_COLOUR);
+		draw_char(3 * 5, 20, rx, FG_COLOUR);
+	}
+
+	show_screen();
+}
+
+//-------------------------------------------------------------------
+
+void setup(void) {
+	set_clock_speed(CPU_8MHz);
+	lcd_init(LCD_DEFAULT_CONTRAST);
+	setup_usb_serial();
+	setup_joystick();
+}
+
+//-------------------------------------------------------------------
+
+void setup_joystick(void) {
+	CLEAR_BIT(DDRD, 1);
+	CLEAR_BIT(DDRB, 7);
+	CLEAR_BIT(DDRB, 1);
+	CLEAR_BIT(DDRD, 0);
+}
+
+// ---------------------------------------------------------
+//	USB serial business.
+// ---------------------------------------------------------
+
+void setup_usb_serial(void) {
+	// Set up LCD and display message
+	lcd_init(LCD_DEFAULT_CONTRAST);
+	draw_string(10, 10, "Connect USB...", FG_COLOUR);
+	show_screen();
+
+	usb_init();
+
+	while ( !usb_configured() ) {
+		// Block until USB is ready.
+	}
+
+	clear_screen();
+	draw_string(10, 10, "USB connected", FG_COLOUR);
+	show_screen();
+}
+
+/*
+**	Transmits a string via usb_serial.
+*/
+void usb_serial_send(char * message) {
+	// Cast to avoid "error: pointer targets in passing argument 1 
+	//	of 'usb_serial_write' differ in signedness"
+	usb_serial_write((uint8_t *) message, strlen(message));
+}
+
+//-------------------------------------------------------------------
+</textarea>
+				</div></li>
+<li >The ZDK program (<code>usb_zdk.c</code>) uses a stream connected to the appropriate serial device, interpreting characters sent by the Teensy to move a sprite.
+			<ul ><li >The program requires the name of the serial device as a command line argument.</li>
+<li >For Windows users, this will be a Cygwin <code>/dev/ttyS?</code> device name, not <code>COM?</code>.</li>
+<li >To get the device name, do<br /><code>ls&nbsp;/dev</code><br />and look for serial devices in the list. One of these should match your Teensy.</li>
+<li >Run the program with a command such as<br /><code>./usb_zdk&nbsp;/dev/ttyS3</code><br />which will use <code>COM4</code> as serial device.</li>
+</ul>
+			<div ><textarea style="background-color: #303088; color: #dcdcdc; overflow: auto; white-space: pre; word-wrap: normal; overflow-x: scroll; font-family: monospace; max-width: 100%;" rows="20" cols="80" readonly="readonly">/*
+**	usb_zdk.c
+**
+**	Control a sprite in ZDK using chars from a file, assumed to be
+**	a USB serial device.
+**
+**	Lawrence Buckingham, QUT, October 2017.
+**	(C) Queensland University of Technology.
+*/
+#include &lt;stdint.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;stdbool.h&gt;
+#include &lt;cab202_graphics.h&gt;
+#include &lt;cab202_sprites.h&gt;
+
+void setup(const char * serial_device);
+void setup_hero(void);
+void setup_usb_serial(const char * serial_device);
+void process(void);
+
+FILE *usb_serial;
+
+//-------------------------------------------------------------------
+
+int main(int argc, char *argv[]) {
+	if ( argc != 2 ) {
+		fprintf(stderr, "Expected 1 command line argument containing serial device name.\n");
+		fprintf(stderr, "Example: usb_zdk /dev/ttyS3\n");
+		return 1;
+	}
+
+	setup(argv[1]);
+
+	for ( ;; ) {
+		process();
+	}
+}
+//-------------------------------------------------------------------
+
+Sprite hero;
+
+void process(void) {
+	int dx = 0, dy = 0;
+
+	int c = fgetc(usb_serial);
+
+	if ( c == 'a' ) dx--;
+	if ( c == 'd' ) dx++;
+	if ( c == 's' ) dy++;
+	if ( c == 'w' ) dy--;
+
+	if ( dx || dy ) {
+		hero.x += dx;
+		hero.y += dy;
+		clear_screen();
+		sprite_draw(&amp;hero);
+		show_screen();
+	}
+}
+
+//-------------------------------------------------------------------
+
+void setup(const char * serial_device) {
+	setup_screen();
+	setup_usb_serial(serial_device);
+	setup_hero();
+}
+
+//-------------------------------------------------------------------
+
+void setup_hero(void) {
+	static char bitmap[] = {
+		"  ****  "
+		" *    * "
+		"* *  * *"
+		"*      *"
+		"* *  * *"
+		"*  **  *"
+		" *    * "
+		"  ****  "
+	};
+	int W = 8, H = 8;
+	sprite_init(&amp;hero, (screen_width() - W) / 2, (screen_height() - H) / 2, W, H, bitmap);
+	clear_screen();
+	sprite_draw(&amp;hero);
+	show_screen();
+}
+
+// ---------------------------------------------------------
+//	USB serial business.
+// ---------------------------------------------------------
+
+void setup_usb_serial(const char * serial_device) {
+	usb_serial = fopen(serial_device, "r+");
+
+	if ( usb_serial == NULL ) {
+		fprintf(stderr, "Unable to open device \"%s\"\n", serial_device);
+		exit(1);
+	}
+}
+
+//-------------------------------------------------------------------
+</textarea>
+				</div></li>
+</ul></div> 
+	</div>
+		<hr />
+	
+	
+-->
+<div class="section">
+		
+	
+    
+		<h3><a name="3.5">Case Study – Bidirectional communication between two Microcontrollers</a></h3>
+		<p><font _mstmutation="1"> A sample program,  and , are listed below.</font><code>uart_example2a.c</code><code>uart_example2b.c</code></p>
+		<blockquote>
+		  <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 100%;"><span class="sc10">
+/* File: uart_example2a.c<br> * Description: C program for the ATMEL AVR microcontroller (ATmega328 chip)<br> * Communication between two microcontrollers 
+ * Send characters via serial and receives characters from serial <br> * <br> * Includes (pretty much compulsory for using the Teensy this semester)<br> * 	- avr/io.h: port and pin definitions (i.e. DDRB, PORTB, PB1, etc)<br> *<br> */
+
+<span class="sc2">#define</span><span class="sc11"> F_CPU </span><span class="sc4">16000000UL</span>
+// AVR header file for all registers/pins
+
+</span><span class="sc2">#include </span><span class="sc4">&lt;avr/io.h&gt; </span><span class="sc10">
+
+</span><span class="sc16">/*  useful macros for Setting data directions in a data direction register (DDR)<br> *<br> *<br> *  Setting, clearing, and reading bits in registers.<br> *	reg is the name of a register; pin is the index (0..7)<br> *  of the bit to set, clear or read.<br> *  (WRITE_BIT is a combination of CLEAR_BIT &amp; SET_BIT)<br> */</span>
+
+<span class="sc2">#define</span><span class="sc11"> SET_BIT(reg, pin)			(reg) |= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br></span><span class="sc2">#define</span><span class="sc11"> CLEAR_BIT(reg, pin)			(reg) &amp;= ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br></span><span class="sc2">#define</span><span class="sc11"> WRITE_BIT(reg, pin, value)	(reg) = (((reg) &amp; ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))) | ((value) &lt;&lt; (pin)))<br></span><span class="sc2">#define</span><span class="sc11"> BIT_VALUE(reg, pin)			(((reg) &gt;&gt; (pin)) &amp; </span><span class="sc4">1</span><span class="sc11">)<br></span><span class="sc2">#define</span><span class="sc11"> BIT_IS_SET(reg, pin)		(BIT_VALUE((reg),(pin))==</span><span class="sc4">1</span><span class="sc11">)</span><span class="sc16">
+
+
+//Functions declaration
+<span class="sc2">void </span><span class="sc11">setup(<span class="sc2">void</span>)</span><span class="sc11">;</span>
+<span class="sc2">void</span> <span class="sc11">process(</span><span class="sc2">void</span><span class="sc11">)</span><span class="sc11">;</span>
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void</span> <span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr);</span></span>
+<span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">);</span>
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data);</span></span>
+
+
+//UART definitions
+//define baud rate 
+</span><span class="sc2">#define</span><span class="sc11"> BAUD </span><span class="sc4">9600</span><span class="sc9"></span><span class="sc2"></span><span class="sc9"><br></span><span class="sc2">#define</span><span class="sc9"> </span><span class="sc11">MYUBRR F_CPU/</span><span class="sc4">16</span><span class="sc11">/BAUD-</span><span class="sc4">1</span><span class="sc16"></span>
+
+<span class="sc4"></span><span class="sc11"></span><span class="sc2">
+void </span><span class="sc11">setup(<span class="sc2">void</span>) {</span>
+
+  <span class="sc16">// initialise uart </span>
+    <span class="sc11">uart_init(MYUBRR);</span>
+    
+  <span class="sc16">// Enable B5 as output, led on B5</span><br>	<span class="sc11">SET_BIT(DDRB, </span><span class="sc4">5</span><span class="sc11">);<br>    SET_BIT(DDRB, </span><span class="sc4">4</span><span class="sc11">);</span><br>  <br> <span class="sc16">  // Enable D6 and D7 as inputs</span><br>  <span class="sc11">  CLEAR_BIT(DDRD,</span><span class="sc4">6</span><span class="sc11">);<br>    CLEAR_BIT(DDRD,</span><span class="sc4">7</span><span class="sc11">);</span>
+<span class="sc11">}</span>
+
+
+<span class="sc2">void</span> <span class="sc11">process(</span><span class="sc2">void</span><span class="sc11">) {</span>
+
+<span class="sc16">   //receiving buffer</span>
+	<span class="sc4">char</span> <span class="sc11">rx_buf</span>;
+<br>    /<span class="sc16">/define a character to sent</span><br>    <span class="sc4">static char</span><span class="sc11"> sent_char_a = </span><span class="sc4">'a'</span><span class="sc11">;<br>    </span><span class="sc4">static char</span><span class="sc11"> sent_char_b = </span><span class="sc4">'b'</span><span class="sc11">;</span><br>  
+
+  <span class="sc16">//send character for heartbeat</span>
+<span class="sc11">    uart_putchar(<span class="sc4">'\n'</span>);</span><br>  <br> <span class="sc16"> //detect pressed switch on D7</span><br>  <span class="sc2">if</span><span class="sc11"> (BIT_IS_SET(PIND,</span><span class="sc4">7</span><span class="sc11">)){</span><br>  <span class="sc11"></span> <br> <span class="sc16">  //send serial data</span><br>	<span class="sc11">uart_putchar(sent_char_a);</span><br>    <br>  }<br>  <br>    <span class="sc16">//detect presed switch on D6</span><br>  <span class="sc2">if</span><span class="sc11"> (BIT_IS_SET(PIND,</span><span class="sc4">6</span><span class="sc11">)){</span><br>  <span class="sc16"></span><span class="sc11"></span> <br>   <span class="sc16">//send serial data</span><br>	<span class="sc11">uart_putchar(sent_char_b);</span><br>    <br>  }<br>  <br>  <br>    /<span class="sc16">/receive serial data</span><br>    <span class="sc11">rx_buf = uart_getchar();</span> <br>  <br>  	<span class="sc16">//toggle the LED to indicate data has been received</span><br>  <span class="sc2">if</span><span class="sc11"> (rx_buf ==</span><span class="sc4">'c'</span><span class="sc11">){SET_BIT(PORTB,</span><span class="sc4">5</span><span class="sc11">); CLEAR_BIT(PORTB,</span><span class="sc4">4</span><span class="sc11">);}<br>  </span><span class="sc2">else if</span><span class="sc11"> (rx_buf ==</span><span class="sc4">'d'</span><span class="sc11">){SET_BIT(PORTB,</span><span class="sc4">4</span><span class="sc11">); CLEAR_BIT(PORTB,</span><span class="sc4">5</span><span class="sc11">);}</span><br>  <br>}
+
+<span class="sc2">int</span><span class="sc11"> main(void) {
+    
+    setup();
+     </span><span class="sc2"> for</span><span class="sc11"> ( ;; ) {<br>		process();<br>		_delay_ms(</span><span class="sc4">100</span><span class="sc11">);<br>	}
+}</span>
+
+<span class="sc16">/*  ****** serial definitions ************ */
+
+// Initialize the UART
+</span><span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void</span></span><span class="sc16"><span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"> <span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr){
+
+    UBRR0H</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr&gt;&gt;</span><span class="sc4">8</span><span class="sc11">);</span><span class="sc10">
+    </span><span class="sc11">UBRR0L</span><span class="sc10"> </span><span class="sc11">=</span><span class="sc10"> </span><span class="sc11">(</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr);
+	UCSR0B</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; RXEN0) | (</span><span class="sc4">1</span><span class="sc10"> </span><span class="sc11">&lt;&lt; TXEN0) | (</span><span class="sc4">1</span><span class="sc10"> </span><span class="sc11">&lt;&lt; RXCIE0)</span><span class="sc10">;
+</span><span class="sc11">	UCSR0C</span><span class="sc10"> </span><span class="sc11">= </span><span class="sc4"></span><span class="sc11">(</span><span class="sc4">3 </span><span class="sc11">&lt;&lt; UCSZ00);</span><span class="sc10"><br>
+<br>
+</span><span class="sc11">}</span></span>
+
+//transmit data
+<span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data){
+<br>    </span><span class="sc2">while</span><span class="sc11"> (!( UCSR0A &amp; (1&lt;&lt;UDRE0))); </span>/* Wait for empty transmit buffer*/<span class="sc11"><br>      
+	UDR0 = data;            </span>/* Put data into buffer, sends the data */<span class="sc11"><br>        </span><span class="sc10"><br>	<br></span><span class="sc11">}</span>
+
+//receive data
+<span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">){
+  </span></span><span class="sc16"><span class="sc11">
+<br>   </span>/* Wait for data to be received */<span class="sc11"> <br>    </span></span><span class="sc2">while</span><span class="sc16"><span class="sc11"> ( !(UCSR0A </span></span><span class="sc4">&amp;</span><span class="sc16"><span class="sc11"> (</span></span><span class="sc4">1</span><span class="sc16"><span class="sc11">&lt;&lt;RXC0)) )</span></span><span class="sc4"></span><span class="sc16"><span class="sc11"></span></span><span class="sc4"></span><span class="sc16"><span class="sc11">;
+<br>    </span><span class="sc2">return </span><span class="sc11">UDR0;</span><span class="sc10"><br>	<br></span><span class="sc11">}</span></span></pre>
+  </blockquote>
+		<blockquote>
+		  <pre style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 100%;"><span class="sc10">
+/* File: uart_example2b.c<br> * Description: C program for the ATMEL AVR microcontroller (ATmega328 chip)
+ * Communication between two microcontrollers <br> * Send characters via serial and receives characters from serial <br> * <br> * Includes (pretty much compulsory for using the Teensy this semester)<br> * 	- avr/io.h: port and pin definitions (i.e. DDRB, PORTB, PB1, etc)<br> *<br> */
+
+<span class="sc2">#define</span><span class="sc11"> F_CPU </span><span class="sc4">16000000UL</span>
+// AVR header file for all registers/pins</span><span class="sc4"> </span><span class="sc10">
+
+</span><span class="sc2">#include </span><span class="sc4">&lt;avr/io.h&gt; </span><span class="sc10">
+
+</span><span class="sc16">/*  Setting data directions in a data direction register (DDR)<br> *<br> *<br> *  Setting, clearing, and reading bits in registers.<br> *	reg is the name of a register; pin is the index (0..7)<br> *  of the bit to set, clear or read.<br> *  (WRITE_BIT is a combination of CLEAR_BIT &amp; SET_BIT)<br> */</span>
+
+<span class="sc2">#define</span><span class="sc11"> SET_BIT(reg, pin)			(reg) |= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br></span><span class="sc2">#define</span><span class="sc11"> CLEAR_BIT(reg, pin)			(reg) &amp;= ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))<br></span><span class="sc2">#define</span><span class="sc11"> WRITE_BIT(reg, pin, value)	(reg) = (((reg) &amp; ~(</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; (pin))) | ((value) &lt;&lt; (pin)))<br></span><span class="sc2">#define</span><span class="sc11"> BIT_VALUE(reg, pin)			(((reg) &gt;&gt; (pin)) &amp; </span><span class="sc4">1</span><span class="sc11">)<br></span><span class="sc2">#define</span><span class="sc11"> BIT_IS_SET(reg, pin)		(BIT_VALUE((reg),(pin))==</span><span class="sc4">1</span><span class="sc11">)</span><span class="sc16">
+
+
+//Functions declaration
+<span class="sc2">void </span><span class="sc11">setup(<span class="sc2">void</span>)</span><span class="sc11">;</span>
+<span class="sc2">void</span> <span class="sc11">process(</span><span class="sc2">void</span><span class="sc11">)</span><span class="sc11">;</span>
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void</span> <span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr);</span></span>
+<span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">);</span>
+<span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data);</span></span>
+
+
+//UART definitions
+//define baud rate 
+</span><span class="sc2">#define</span><span class="sc11"> BAUD </span><span class="sc4">9600</span><span class="sc9"></span><span class="sc2"></span><span class="sc4"></span><span class="sc9"><br></span><span class="sc2">#define</span><span class="sc9"> </span><span class="sc11">MYUBRR F_CPU/</span><span class="sc4">16</span><span class="sc11">/BAUD-</span><span class="sc4">1</span>
+
+<span class="sc2">
+void </span><span class="sc11">setup(<span class="sc2">void</span>) {</span>
+
+    <span class="sc16">// initialise uart </span>
+    <span class="sc11">uart_init(MYUBRR);</span>
+
+     <span class="sc16">// Enable B5 as output, led on B5</span><br>	<span class="sc11">SET_BIT(DDRB, </span><span class="sc4">5</span><span class="sc11">);<br>    SET_BIT(DDRB, </span><span class="sc4">4</span><span class="sc11">);</span><br>  <br> <span class="sc16">  // Enable D6 and D7 as inputs</span><br>  <span class="sc11">  CLEAR_BIT(DDRD,</span><span class="sc4">6</span><span class="sc11">);<br>    CLEAR_BIT(DDRD,</span><span class="sc4">7</span><span class="sc11">);</span>
+    
+<span class="sc11">}</span>
+
+
+<span class="sc2">void</span> <span class="sc11">process(</span><span class="sc2">void</span><span class="sc11">) {</span>
+
+    <span class="sc16">//receiving buffer</span>
+	<span class="sc4">char</span> <span class="sc11">rx_buf</span>;<br>  <br>   <span class="sc16"></span>/<span class="sc16">/define a character to sent</span><br>    <span class="sc4">static char</span><span class="sc11"> sent_char_c = </span><span class="sc4">'c'</span><span class="sc11">;<br>    </span><span class="sc4">static char</span><span class="sc11"> sent_char_d = </span><span class="sc4">'d'</span><span class="sc11">;</span>
+
+    <span class="sc16">//send character for heartbeat</span>
+<span class="sc11">    uart_putchar(<span class="sc4">'\n'</span>);</span><br>  <br>  <br> <span class="sc16"> //detect pressed switch on D7</span><br>  <span class="sc2">if</span><span class="sc11"> (BIT_IS_SET(PIND,</span><span class="sc4">7</span><span class="sc11">)){</span><br>  <span class="sc11"></span><br> <span class="sc16">  //send serial data</span><br>	<span class="sc11">uart_putchar(sent_char_c);</span><br>    <br>  }<br>  <br>    <span class="sc16">//detect presed switch on D6</span><br>  <span class="sc2">if</span><span class="sc11"> (BIT_IS_SET(PIND,</span><span class="sc4">6</span><span class="sc11">)){</span><br>  <span class="sc16"></span><span class="sc11"></span> <br>   <span class="sc16">//send serial data</span><br>	<span class="sc11">uart_putchar(sent_char_d);</span><br>    <br>  }<br>  <br>  <br>    /<span class="sc16">/receive serial data</span><br>    <span class="sc11">rx_buf = uart_getchar();</span> <br>  <br>  	<span class="sc16">//toggle the LED to indicate data has been received</span><br>  <span class="sc2">if</span><span class="sc11"> (rx_buf ==</span><span class="sc4">'a'</span><span class="sc11">){SET_BIT(PORTB,</span><span class="sc4">5</span><span class="sc11">); CLEAR_BIT(PORTB,</span><span class="sc4">4</span><span class="sc11">);}<br>  </span><span class="sc2">else if</span><span class="sc11"> (rx_buf ==</span><span class="sc4">'b'</span><span class="sc11">){SET_BIT(PORTB,</span><span class="sc4">4</span><span class="sc11">); CLEAR_BIT(PORTB,</span><span class="sc4">5</span><span class="sc11">);}</span><br>  <br>  <br>}
+
+<span class="sc2">int</span><span class="sc11"> main(void) {
+    
+    setup();
+     </span><span class="sc2"> for</span><span class="sc11"> ( ;; ) {<br>		process();<br>		_delay_ms(</span><span class="sc4">100</span><span class="sc11">);<br>	}
+}</span>
+
+<span class="sc16">/*  ****** serial definitions ************ */
+// Initialize the UART
+</span><span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"><span class="sc2">void</span></span><span class="sc16"><span style="line-height: 1.25; background: #2A211C; color: #BDAE9D; overflow-x: scroll; font-family: monospace; max-width: 90%;"> <span class="sc11">uart_init(</span><span class="sc4">unsigned int</span><span class="sc10"> </span><span class="sc11">ubrr){
+
+   UBRR0H</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr&gt;&gt;</span><span class="sc4">8</span><span class="sc11">);</span><span class="sc10">
+   </span><span class="sc11">UBRR0L</span><span class="sc10"> </span><span class="sc11">=</span><span class="sc10"> </span><span class="sc11">(</span><span class="sc4">unsigned char</span><span class="sc11">)(ubrr);
+	UCSR0B</span><span class="sc10"> </span><span class="sc11">= (</span><span class="sc4">1</span><span class="sc11"> &lt;&lt; RXEN0) | (</span><span class="sc4">1</span><span class="sc10"> </span><span class="sc11">&lt;&lt; TXEN0) | (</span><span class="sc4">1</span><span class="sc10"> </span><span class="sc11">&lt;&lt; RXCIE0)</span><span class="sc10">;
+	</span><span class="sc11">UCSR0C</span><span class="sc10"> </span><span class="sc11">= </span><span class="sc4"></span><span class="sc11">(</span><span class="sc4">3 </span><span class="sc11">&lt;&lt; UCSZ00);</span><span class="sc10"><br>
+<br>
+</span><span class="sc11">}</span></span>
+
+//transmit data
+<span class="sc2">void </span><span class="sc11">uart_putchar(</span><span class="sc4">unsigned char </span><span class="sc11">data){
+<br>    </span><span class="sc2">while</span><span class="sc11"> (!( UCSR0A &amp; (1&lt;&lt;UDRE0))); </span>/* Wait for empty transmit buffer*/<span class="sc11"><br>          
+    UDR0 = data;            </span>/* Put data into buffer, sends the data */<span class="sc10"><br>	<br></span><span class="sc11">}</span>
+
+//receive data
+<span class="sc2">unsigned char </span><span class="sc11">uart_getchar(</span><span class="sc2">void</span><span class="sc11">){
+</span></span><span class="sc4"></span><span class="sc16"><span class="sc11"></span></span><span class="sc4"></span><span class="sc16"><span class="sc11"><br>    </span>/* Wait for data to be received */<span class="sc11">
+     </span></span><span class="sc2">while</span><span class="sc16"><span class="sc11"> ( !(UCSR0A </span></span><span class="sc4">&amp;</span><span class="sc16"><span class="sc11"> (</span></span><span class="sc4">1</span><span class="sc16"><span class="sc11">&lt;&lt;RXC0)) </span></span><span class="sc4"></span><span class="sc16"><span class="sc11"></span></span><span class="sc4"></span><span class="sc16"><span class="sc11">);
+
+   </span><span class="sc2">return </span><span class="sc11">UDR0;</span><span class="sc10"><br>	<br></span><span class="sc11">}</span></span></pre>
+  </blockquote>
+		<ul>
+	      
+		  <p>What this does:		  </p>
+		  <li>Both programs are very similar in the way they perform the task. Differences are mainly in the characters used to trigger events on each microcontroller.</li>
+		  <li><font _mstmutation="1">In <strong _mstmutation="1">Setup</strong></font>
+            <ul>
+              <li>Pins B5 and B4 are set as outputs</li>
+              <li>Pins D6 and D7 are set as inputs.</li>
+            </ul>
+		  </li>
+		  <li><font _mstmutation="1">In <strong _mstmutation="1">process</strong></font>
+<ul>
+        <li>Pins associated with each switch are evaluated, if switch is  pressed then a character is sent via uart.</li>
+        <li>uart is read, and depending on the character one of the LEDs is turn on and the other off.</li>
+	        </ul>
+		  </li>
+		</ul>
+		<p><a href="https://blackboard.qut.edu.au/bbcswebdav/pid-8394135-dt-content-rid-31013118_1/courses/CAB202_20se1/Topic08/www.tinkercad.com">TinkerCad </a>version of this program: </p>
+		<p><a href="https://www.tinkercad.com/things/3QF0CjuryIr">https://www.tinkercad.com/things/3QF0CjuryIr</a></p>
+		<p>&nbsp;</p>
+		<p><a href="./CAB202 Topic 8 – Serial Communication_files/fig8.png" target="new"><img src="./CAB202 Topic 8 – Serial Communication_files/fig8.png" width="760" height="361" alt=""></a></p>
+		<div class="subsection">
+		  <ul>
+		    <li><em><b>Note in serial (uart) communications  pins you need to connect are <code>TX</code> and <code>RX ( and GND)</code>.</b></em>
+		      <ul>
+		        <li><font _mstmutation="1">Please  connect </font><code>do not</code><code>any other pin between microcontrollers.</code></li>
+	          </ul>
+	        </li>
+	      </ul>
+  </div>
+		<p>&nbsp;</p>
+		<h2><strong><a name="4"></a>Additional exercices</strong>: </h2>
+        <ul>
+          <li><font _mstmutation="1">Design a system based on microcontrollers (2x) that exchange data via uart. 
+            </font><ul>
+              <li>The first microntroller send the string "Hello from Microcontroller 1", then the second microcontroller receive the string and add  "From Microcontroller  2:" at the beginning of the received string  and send it back to microcontroller 1. <strong>Hint</strong>: Example 2 is a good starting point for this exercices. The receiver function will need to be modified to receive strings.</li>
+            </ul>
+          </li>
+</ul>
+        <p>&nbsp;</p>
+</div>
+		<hr>
+
+    <div class="section">
+          <h2><a name="5">Summary</a></h2>
+          <div class="subsection">
+            <ul>
+              <li>UART is a critical functionality in emebedded system. Often, to debug program, configure inner parameters in the program, send state of the program, etc.</li>
+              <li>Timers and interrupts are the preferred way to impletement uart routines, once covered in future lectures we will modify uart routines to use interrupts.</li>
+              <li>Serial communications also refer to other protocols such as SPI, I2C and USB.</li>
+            </ul>
+          </div>
+</div>
+    <p>&nbsp;</p>
+    <p style="text-align:center"><em>The End</em></p>
+	<hr>
+</body></html>

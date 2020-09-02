@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<!-- saved from url=(0207)file:///C:/Users/mithr/OneDrive%20-%20Queensland%20University%20of%20Technology/2020SEM1/CAB202/Assignment/CAB202%20-%20CAB202%20Assignment,%20Exercise%201_%20Microcontroller%20Assignment%20(Device%201).html -->
+<html lang="en"  class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>
+	CAB202 - CAB202 Assignment, Exercise 1: Microcontroller Assignment (Device 1)
+</title><script src="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/modernizr"></script>
+<link href="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/css" rel="stylesheet">
+<link href="https://sefams01.qut.edu.au/CAB202/favicon.ico" rel="shortcut icon" type="image/x-icon"></head>
+<body>
+	<form method="post" action="https://sefams01.qut.edu.au/CAB202/Exercise?TopicNumber=13&amp;ProblemNumber=1" id="ctl01">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="FY3MdQBDmPOwvhiiFSjO5OMC2PvfypfbEva9m7Jgilz7Nzpx8v2Xa5znUCKbxNdoqbLBPWvq4JN8skmm9yW+WBfFXTShqiaw1UWMTCswjfjqd/lm8INV389LwJRbujipThbfnXB9+NIP04FlaVkizVLrsrDrRpVkR+S1mI6ERWNHvbwyy8QsbzzUdyGlt9YW">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['ctl01'];
+if (!theForm) {
+    theForm = document.ctl01;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+
+<script src="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/MsAjaxJs" type="text/javascript"></script>
+<script src="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/jquery-1.10.2.min.js.下载" type="text/javascript"></script>
+<script src="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/bootstrap.min.js.下载" type="text/javascript"></script>
+<script src="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/respond.min.js.下载" type="text/javascript"></script>
+<script src="./CAB202 - CAB202 Assignment, Exercise 1_ Microcontroller Assignment (Device 1)_files/WebFormsJs" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="8A9CEDA3">
+	<input type="hidden" name="__PREVIOUSPAGE" id="__PREVIOUSPAGE" value="6MnZ8G-SpCbERVeSsnkpe--toDDGCVcpaRtS4nISyGl6hOFOODBJ5_bdTT6SzaEg8gh9W1PJXKdWuxjhFyJU_zonVUQCeKxE0kDBPM62x801">
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="OPsOQ/vu+U+V4gInf9BAEiQNLvaVrpXLWkfKuDUw69gSNuF+lpYkiyAxiApb71gqA5EWv56NFub1ZUaHYJhkxxApFGN8LU6sVWPCjuswVo9fZoe0+h7EJAabPojuSm3Is5gfdHs75osFwK/GJr6X5GorIILBceNZwPgyfmXp/C2pX5ZKFGv9A3oAQUXpSGIYZGUyYNmsxelg8EokDiNkVXaLaou4kNpEM0AgHARz+Gckz5GNjjUV4UWL09iD9nOz/L3ctnEDkRdxkLVXlo18olWrlzd/C5RQrUCrz996c9EiSuPv6xMHAPGTwvCyWR/m75sCwDPni5eu0KD5LACNkzt3VFeFMOBWANapoGaD/5s+RYjhpBCgxVDy0ohcfVFKtem0XgNfCB0HwV05v6kOGEPoWOBjqTf7NNx2RZHbJuGrulT7Yn7TwmvWy78aLP4FA4frbncPEdSmMnOBakPnLBtAVrOAh9hazDK35Jgk9542xswmXGo4eHegZwpbj9QFQhuxTnghby+H3n47z/qPBJt+bhJk2belEUlMsRoaNbbJW1v641PCPQaPoOuGPsPqNdDdtsESwDuYVLF/qq6L/9994ZhIsaB8JuhlAN2KP7ILek8R8gUI9Qje5+z69oCyj44LbhYlI79aqOdC/L9IpurKyDXMEFK24r2b8AsY5AWnoDYZlzszUi6tl9DC77X9gdKHhF9vsjzruAMkPZCyOpEHR8RzAKHCjxqlmFvSAaUkGTHNC+r/S4SX90T2iLzOESlkTgCNiV/iYsf6eiiOdm8Wrx7q2vylWEXz8bjkVTduK6GJ3IqN9KE+Q24j3ka9NNGadSTOrIUx/M6iqdrfw3GOgcc2S+/gtoSZBOJNoiZjAns9ccMaZU0H++EVx2l1fhr6Xq9oSHxF3mLQL9kj86M2YYtC3NPemYaCDYMlTPy1WQdA+qveylxeIRVeeRpS6cSJ0F4y+K2g08KoFKzbjDsdpiY7Om3zfhSjaQb7FB7Ko2WmhC+vH/VyqIZWR0N7qV8H65npFpzyR5vmTqLEl8ILpTSM0HnU7BPwyRcMZ9acvLaCRZRS/yTmrcs41pYqfdRQ2GB8lSGYmu7SRBmDu2mxonJBuHnZLm4N4Kjt0LIt6Ow0e34UoU1zJDW78MYYYgxwUXSf6GktKLowMugOxKDC1rdHZBvZc35CAbAy6jiCy4srhJHlJyLijG6l2lAJLK8YCikjDXLsgtFqEqoKCrzy5Yb2kV4ToWef+sQ/7U2327vzYWVwqX6Ob/9EOSkNG8AMJ1gOZuE7gBHbfNjvf2zHqYqUZ3DbWSU22CQkhx1sf5RrnIeOa0osb4cwiBtxIH2qzSz5W2pYddHlrrU4DcSgKwaUiPFZtLFgnKmav/q7QK/7x4A2UJhhmBVfxS6uwyRVheqKeudjTHQFGzlxW+kVGg1ybn7UJ0MCPOZ6riuZ25jUGjlgQtg5QpXwfFMjZgsm7PbqABhZYTtZZ2ydAeCDOSIZkp9WyGjX+QBfDecROWKrPzwZTfVHaRms8l9zIrMso5M67dSu7oDpJsZ/Ug31THySzk5Mxz+IBmVk89FaeazmeFqlv4xZHIg3us0vGvFz+twmW67BeZLbSUfKc2bosstsTa6ptLD8i04A1Rh4ZP2hlvgdQ4RInJNqWTYkO75lF28Gyu708cOuSmxmRrQF8XuiI5JuY/wlPla8qdIoOTmHtMxQ/Ipjx6JaJViHz+C3vQXXPIMO7eoe7YmPfMCEkVYgfB2EJsI/ERG6vNjYhL8+i5xRZBSoVWfgWIyGleyPrHaoSdv1LNmTfJUqQ3lnzKyuAYePV2ENZhwWF51z+4HJo4jCNOkw/lXwlXc5JJIrspj3pbNSfur+1kFD/YLoAVabSySN/jkLj6vXZmEFst9EOsfFQMU2Wtb/AVcj">
+</div>
+		<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ctl08', 'ctl01', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+
+		
+		<div class="container body-content">
+			
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="exerciseBox">
+        <style type="text/css">
+        li {
+            margin-top: 3pt;
+            margin-bottom: 3pt;
+        }
+    </style>
+    <h1 style="text-align: center">CAB202 Microcontroller Assignment</h1>
+    <table border="1" cellpadding="3" cellspacing="0" style="margin-right: auto; margin-left: auto">
+        <tbody><tr>
+            <td>
+                <strong>Due Date</strong>:
+            </td>
+            <td>31 May 2020 23:59:59
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <strong>Assessment Weight</strong>:
+            </td>
+            <td>40%
+            </td>
+        </tr>
+    </tbody></table>
+
+    <h2>FAQ</h2>
+	<ol>
+		<li>
+			<p>Q: Am I allowed use library X (where X is the name of any Arduino library)?</p>
+	<p>A: The standard C libraries (<a href="http://cplusplus.com/reference/">http://cplusplus.com/reference/</a>, under the heading "C Library") are permitted. In addition, headers of the form <code>&lt;avr/xxx.h&gt;</code>, plus <code>&lt;util/delay.h&gt;</code>, are permitted. If X is not covered by these descriptions, X cannot be used. And certain libraries, such as <code>time.h</code>, are not available in a microcontroller, so they cannot be used either.</p>
+		</li>
+		<li>
+			<p>
+				Q: How original does my application have to be?</p>
+				<p>A: Your idea doesn't have to be very original; for example, porting a real-life game (such as Mah Jong, Old Maid, Snap, Piggy In The Middle) or homage to existing video game genres is reasonable. But your implementation must be completely original.</p>
+			<p>Practical applications such as home automation devices are fine in principle, but may have difficulty incorporating multiple learning outcomes in a coherent and cohesive manner. Certain applications may require substitution of other similar devices in the TinkerCad implementation. If that is the case, the substitution must be an incontestably direct replacement for the substituted object, such that the analogy between real device and substituted TinkerCad component is clear and not contrived.&nbsp; </p>
+		</li>
+	</ol>
+	<h2>Specification</h2>
+    <ol>
+        <li>You are required to invent, design, implement, document, and demonstrate the prototype of a microcontroller-based product – hereafter referred to as the application – which showcases your mastery of learning outcomes in CAB202. </li>
+        <li>The application must perform some meaningful service, carry out a specific useful function, or in general be a cohesive and sensible construct which will deliver valuable functionality.
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+            <ol>
+                <li>The application is NOT a compendium of unrelated software and hardware snippets aggregated into a single package in a coincidental manner.</li>
+                <li>The specific task, purpose, or valuable functionality inherent in your application is left to you to choose. Thus, this task is an opportunity for you to indulge your interests and ideally create a prototype product which will have enduring value for you, either in the course of your professional development, or as a chance to implement something of practical utility for yourself or others.</li>
+                <li>A very broad range of application areas will be accepted, including but not limited to such things as prototype hand-held games, home automation helpers, assistive technologies for people with disabilities, musical instruments, or scientific instruments.
+
+ 
+
+
+
+
+
+                    <ul>
+                        <li>Note well: if you decide to implement a hand-held game, you must implement a playable and original game which exercises every element of claimed functionality.</li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+    </ol>
+
+    <h2>Constraints</h2>
+    <p>
+        Your application prototype must conform to the following constraints:
+ 
+ 
+ 
+
+    </p>
+    <ol start="3">
+        <li>The application must demonstrate proficiency with up to 8 distinct instances of the following specific functional capabilities, each of which is directly related to CAB202 learning outcomes.
+ 
+ 
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ol type="a">
+                <li>Digital I/O – switch</li>
+                <li>Digital I/O – interrupt-based debouncing</li>
+                <li>Digital I/O – LED</li>
+                <li>Analog Input</li>
+                <li>Analog Output (PWM) – hardware-based; OR software-based “bit-banging”</li>
+                <li>Serial I/O – hardware based; polling OR interrupt mediated</li>
+                <li>LCD – simple text display; OR: bit-mapped graphics, including sprites, line or pixel art</li>
+                <li>Timers – other than debouncing or PWM</li>
+                <li>Other advanced hardware interaction. Options include:
+ 
+ 
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <ul>
+                        <li>LED matrix display built from first principles; 
+ </li>
+                        <li>music synthesis tool; 
+ </li>
+                        <li>signal processing tool; 
+ </li>
+                        <li>distributed computing application
+ </li>
+                        <li>Serial I/O – SPI or I2C, hardware-based; OR via bespoke code –“bit banging”</li>
+                        <li>Subject to prior approval in writing from Unit Coordinator or delegate </li>
+                    </ul>
+                    <p>Subject to prior approval in writing from Unit Coordinator or delegate </p>
+                </li>
+            </ol>
+            <p>In this context, “distinct instance” mean that each category will be scored once. Thus, using 8 buttons counts as a single instance of learning outcome (a) in the list above. Debouncing 4 switches counts as a single instance of learning outcome (b). No learning outcome will be allocated credit more than once during marking.</p>
+
+        </li>
+        <li>The application must be implemented via a private TinkerCad Circuit emulation. Include a shared link to this as part of your submission.
+</li>
+        <li>The application must be runnable – that is, all functionality claimed for the application must be able to be exercised via software included in the TinkerCad Circuit, and which executes correctly when the “Start Simulation” action is invoked.
+</li>
+        <li>The software required to run your application must be fully self-contained, and consist entirely of original software crafted by you.
+ 
+ 
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <ol type="a">
+                <li>Third party libraries or source code obtained from any source other than the CAB202 teaching materials are strictly prohibited.
+ </li>
+                <li>You may use all functions in the standard C library, including any file which may be included via a C pre-processor directive<br>
+                    <code>#include &lt;somefile.h&gt;</code><br>
+                    and which compiles correctly on AMS.
+ </li>
+                <li>Generic techniques or algorithms sourced from external sites and adapted to your setting is permitted, however the implementation of such algorithms must be demonstrably your own work. Due citation is required for any such algorithms. </li>
+            </ol>
+
+        </li>
+        <li>All software must be written using the C programming language.
+ 
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+            <ul>
+                <li>Attach all source files below and use the Submit button to verify that your software conforms to this requirement.</li>
+            </ul>
+        </li>
+    </ol>
+    <h2>Submission Requirements</h2>
+    <p>You must submit the following items:</p>
+    <ol start="8">
+        <li>Complete source code for the software required to run your application must be submitted using the form below.
+ 
+ 
+
+
+
+
+
+            <ul>
+                <li>The program MUST compile successfully in AMS, or a score of 0 will be recorded for this assessment item.</li>
+            </ul>
+        </li>
+        <li>A shared link to your private TinkerCad Circuit where the prototype application is implemented.
+ 
+ 
+
+
+
+
+
+            <ul start="8">
+                <li>This should be included in your report. </li>
+            </ul>
+        </li>
+        <li>A recorded audio-visual screen-cast (maximum of 5 minutes duration) which demonstrates all functionality for which you are claiming credit.
+ 
+ 
+
+
+
+
+
+            <ol type="a">
+                <li>The submitted video must be viewable, audible, and submitted according to the prescribed submission mechanism, or a score of 0 will be recorded for this assessment item.</li>
+                <li>The video must be well-scripted and presented in a professional manner using audio as well as visual channels to convey information. Some examples of acceptable and unacceptable scripting follow:
+ 
+ 
+
+
+
+
+
+                    <ul>
+                        <li><strong>Good</strong>: “Now as I turn Player 1 Potentiometer clockwise, observe as the paddle icon moves upward on the LCD.” – synchronised properly with corresponding visual cues and clearly visible results.</li>
+                        <li><strong>Good</strong>: “Watch the status LEDs on the breadboard as I click the Increment button four times. You expect to see the LEDs light up in order from left to right with each button release. One, two, three, four. See, the fourth LED is no lit up.” – with appropriate pauses and if necessary with careful mouse gestures to direct the viewer’s gaze.
+</li>
+                        <li><strong>Not good</strong>: “OK, let’s move the paddles. Yup that works.”
+</li>
+                        <li><strong>Not good</strong>: Led Zeppelin’s “Immigrant Song” played at volume 11 over the top of the voice-over. Or any other musical backing, unless your application is a synthesizer of some kind.
+</li>
+                        <li><strong>Not good</strong>: Any distractions, either visual or auditory. This includes the neighbour’s lawn mower.
+</li>
+                        <li><strong>Not good</strong>: “Here we go…”. – followed by a lengthy period of silence punctuated by strained grunts and exhalations –” see, that works perfectly!”
+</li>
+                        <li><strong>Not good</strong>: Dialog of high quality, but accompanied by flailing mouse movements or other visual effects which hurt the marker’s eyes. </li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+        <li>A written report containing the following sections:
+ 
+
+
+            <ol type="a">
+                <li>A succinct but comprehensive introduction which fully describes the use case targeted by your application, justifying the value of the application, and setting out clearly how each claimed learning outcome is showcased by your application, and describes how each component contributes to the overall functionality of the application.
+ </li>
+                <li>A detailed set of wiring instructions which clearly and without ambiguity defines every component and hardware connection in your application. Some examples of acceptable and unacceptable wiring instructions follow:
+ 
+
+
+                    <ul>
+                        <li><strong>Good</strong>: ”Connect LED 2: place LED 2 on the breadboard to the right of LED 1; connect pin 13 to the cathode of LED 2; connect the anode of LED 2 to one end of a distinct 220 Ohm resistor; connect the other end of the resistor to ground”.</li>
+                        <li><strong>Not good</strong>: ”Plug a LED into pin 13”.</li>
+                        <li><strong>Not good</strong>: ”Connect Door Open Switch: see attached diagram”. </li>
+                    </ul>
+                </li>
+                <li>A fully labelled schematic diagram which shows the named components and their connections. All components are thoughtfully laid out and the overall presentation of the diagram ensures that it will be easy for users to create the application. 
+ 
+
+
+                    <ul>
+                        <li>A link to the TinkerCad Circuit by itself does not meet this requirement</li>
+                    </ul>
+                </li>
+            </ol>
+        </li>
+    </ol>
+    <p>Details of the submission mechanism for report and video will be supplied by the end of Week 10.</p>
+    <h1>Assessment Criteria</h1>
+    <p>The application cannot be assessed accurately unless all four items listed at paragraphs 8, 9, 10, and 11 above are submitted. bmitted. <strong>If any of these items is absent, a score of 0 will immediately be awarded for the whole assignment.</strong></p>
+    <p>The marking criteria applied are as follows:</p>
+    <ol start="1">
+        <li>General reporting of results – 8 marks, comprising:
+ 
+
+
+            <ol type="a">
+                <li style="margin-top: 6pt;"><strong>Video presentation (4 marks)</strong>
+
+
+
+                    <table border="1" cellpadding="3" cellspacing="0">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score</b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%</td>
+                            <td>Supplied video is unable to be viewed or contains inaudible sound-track.</td>
+                        </tr>
+                        <tr>
+                            <td>25%</td>
+                            <td>Supplied video is grossly substandard; Little effort has been made to script and present the capabilities of the application; Video deviates wildly from time requirements; Video should have been re-recorded to enable clear understanding of the application.</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>Supplied video is of marginally acceptable standard; Approximately half of claimed functionality is clearly and carefully scripted; Video does not adhere to time requirements; Video scripting and editing is tolerable, but a number of segments should have been re-recorded to enable clear understanding of the application. </td>
+                        </tr>
+                        <tr>
+                            <td>75%</td>
+                            <td>Supplied video is generally well scripted, presenting most aspects of claimed functionality in a careful and clear manner, and meets timing requirement. There may be minor lapses in quality, clarity, or other small problems with video preparation.</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>Supplied video is excellently scripted, presenting all aspects of claimed functionality in a careful and clear manner, and meets timing requirement.</td>
+                        </tr>
+                    </tbody></table>
+                </li>
+                <li style="margin-top: 6pt;"><strong>Report Introduction (2 marks)</strong>
+                    <table border="1" cellpadding="3" cellspacing="0">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score</b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%</td>
+                            <td>Report does not have a readily discernible introduction.</td>
+                        </tr>
+                        <tr>
+                            <td>25%</td>
+                            <td>Introduction is grossly substandard. Little effort has been made to articulate the use case, value proposition, or alignment with learning outcomes; Introduction is poorly organised, with little attention paid to general principles of academic and professional communication.</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>Introduction is marginally acceptable. Some attempt has been made to set out the use case and value proposition behind the application; Introduction is adequately structured, with attention paid to the basic principles of academic and professional communication; Introduction fails to indicate how a number of learning outcomes are demonstrated by the supplied application. </td>
+                        </tr>
+                        <tr>
+                            <td>75%</td>
+                            <td>Introduction is generally well written. The relationship to learning outcomes or the target use case of a small number of components in the system may not be clear; There may be minor lapses in quality, clarity, or other small problems with expression or organisation of ideas in the introduction.</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>Introduction provides succinct but comprehensive coverage of the use case targeted by the application, its value proposition, and how each claimed learning outcome is showcased. Introduction accurately and clearly describes how each component contributes to the overall functionality of the application.</td>
+                        </tr>
+                    </tbody></table>
+                </li>
+                <li style="margin-top: 6pt;"><strong>Schematic Diagram (2 marks)</strong>
+                    <table border="1" cellpadding="3" cellspacing="0">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score</b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%	</td>
+                            <td>Report does not include wiring instructions.</td>
+                        </tr>
+                        <tr>
+                            <td>25%	</td>
+                            <td>Schematic diagram is largely incomplete, or otherwise of very low quality. Many components in the physical design are unlabelled, have confusing labels, or do not appear to follow a logical labelling pattern; Components are visually disorganised or badly laid out; Connections between components are hard to decipher, or appear to be electronically invalid. The schematic diagram would not yield a working circuit.</td>
+                        </tr>
+                        <tr>
+                            <td>50%	</td>
+                            <td>Schematic diagram is marginally adequate. All components appear in the schematic diagram, but some have misleading or confusing names and locations; Some of the connections between components are clear and unambiguous, but some are confusing or appear to be electrically invalid; Some components are thoughtfully laid out, but the overall presentation of the diagram means it might be hard to assemble the circuit by following the diagram.</td>
+                        </tr>
+                        <tr>
+                            <td>75%	</td>
+                            <td>All components appear in the schematic diagram. Each component has a carefully chosen name, and most of the connections between components are clear and unambiguous. Most of the components are thoughtfully laid out and the overall presentation of the diagram ensures that it will be easy for users to create the application, however there may be minor defects in layout such as occasional failures of alignment or logical grouping.</td>
+                        </tr>
+                        <tr>
+                            <td>100%	</td>
+                            <td>All components appear in the schematic diagram. Each component has a carefully chosen name, the connections between components are clear and unambiguous. All components are thoughtfully laid out and the overall presentation of the diagram ensures that it will be easy for users to assemble the application.</td>
+                        </tr>
+                    </tbody></table>
+                </li>
+            </ol>
+        </li>
+        <li style="margin-top: 6pt;"><strong>Demonstrated Learning Outcomes – 32 marks.</strong><br>
+            This category is broken down by target learning outcome, with a separate mark allocated for each learning outcome. Therefore, there will be 8 occurrences of each of the following criteria in the final marking sheet, one per learning outcome:
+
+            <ol type="a">
+                <li style="margin-top: 6pt;"><strong>Wiring Instructions (0.5 marks per learning outcome)</strong>
+                    <table border="1" cellpadding="3" cellspacing="0">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score</b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%	 </td>
+                            <td>Report does not include wiring instructions.</td>
+                        </tr>
+                        <tr>
+                            <td>25%	 </td>
+                            <td>Wiring instructions are grossly substandard. Most components in the physical design are unlabelled; Instructions for many components are unclear or ambiguous; Components are glossed over, or imprecise terminology is used; The wiring instructions, if followed to the letter, would not possibly yield a working circuit.</td>
+                        </tr>
+                        <tr>
+                            <td>50%	 </td>
+                            <td>Wiring instructions are marginally adequate. Instructions for some components are clear and without ambiguity, but the position and connections between many components are unclear or potentially ambiguous. If followed to the letter to build a circuit, there is a moderate to high probability that the circuit would fail.</td>
+                        </tr>
+                        <tr>
+                            <td>75%	 </td>
+                            <td>Wiring instructions are mostly clear and without ambiguity, but for a small number of components or connections the instructions are unclear or potentially ambiguous.</td>
+                        </tr>
+                        <tr>
+                            <td>100%	 </td>
+                            <td>Wiring instructions clearly and without ambiguity define every component and hardware connection in the application.</td>
+                        </tr>
+                    </tbody></table>
+                </li>
+                <li style="margin-top: 6pt;">
+                    <strong>Functionality (1 marks per learning outcome)</strong>
+                    <table border="1" cellpadding="3" cellspacing="0">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score</b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%</td>
+                            <td>Inspection of code and running simulation indicates the that feature does not work; Feature causes application to malfunction constantly.</td>
+                        </tr>
+                        <tr>
+                            <td>25%</td>
+                            <td>Some attempt has been made to implement the feature. Feature works sporadically but it is difficult to use in line with its expected purpose; Feature causes application to malfunction occasionally.</td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>A moderate effort has been made to implement the feature. Feature works most of the time, but occasional defects interfere with its expected purpose; Feature causes application to malfunction rarely.</td>
+                        </tr>
+                        <tr>
+                            <td>75%</td>
+                            <td>Feature works mostly without error according to expectation, but rare minor defects are evident when feature is used. </td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>Feature works flawlessly according to expectation.
+</td>
+                        </tr>
+                    </tbody></table>
+                </li>
+                <li style="margin-top: 6pt;">
+                    <strong>Demonstration (0.5 marks per learning outcome)</strong>
+                    <table border="1" cellpadding="3" cellspacing="0">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score</b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%	 </td>
+                            <td>From watching the video, it is unclear that the feature works correctly; Feature is demonstrated, but causes application to malfunction constantly.</td>
+                        </tr>
+                        <tr>
+                            <td>25%	 </td>
+                            <td>The video makes it clear that some attempt has been made to implement the feature. Feature as demonstrated works sporadically but it seems to fall short of its expected purpose; During demonstration feature causes application to malfunction occasionally.</td>
+                        </tr>
+                        <tr>
+                            <td>50%	 </td>
+                            <td>The video makes it clear that moderate effort has been made to implement the feature. Feature works most of the time, but occasional defects interfere with its expected purpose; Feature causes application to malfunction rarely.</td>
+                        </tr>
+                        <tr>
+                            <td>75%	 </td>
+                            <td>Demonstration confirms that feature works mostly without error according to expectation, but rare minor defects are evident when feature is used. </td>
+                        </tr>
+                        <tr>
+                            <td>100%	</td>
+                            <td>Demonstration indicates that feature works flawlessly according to expectation.</td>
+                        </tr>
+                    </tbody></table>
+                    </li><li style="margin-top: 6pt;">
+                        <strong>Integration (2 marks per learning outcome)</strong></li><strong>
+                    </strong>
+                    <table border="1" cellpadding="3" cellspacing="1">
+                        <tbody><tr>
+                            <td><b>Fractional&nbsp;score </b></td>
+                            <td><b>Indicative quality characteristics</b></td>
+                        </tr>
+                        <tr>
+                            <td>0%</td>
+                            <td>The feature is unrelated to the application. There are no software or data dependencies between this feature and any other component of the application. </td>
+                        </tr>
+                        <tr>
+                            <td>50%</td>
+                            <td>The feature is marginally related to the application. There are software or data dependencies between this feature and other components of the application, but they appear to form an isolated sub-system which is not related to the rest of the application.</td>
+                        </tr>
+                        <tr>
+                            <td>100%</td>
+                            <td>Report sets out clearly how each claimed learning outcome is showcased by your application, and describes how each component contributes to the overall functionality of the application. Clearly documented software dependencies in the source code relate this feature to other components of the application.</td>
+                        </tr>
+                    </tbody></table>
+
+                
+            </ol>
+        </li>
+    </ol>
+    <h2>Academic conduct</h2>
+    <p>This is not a group assignment. While we encourage you to discuss the assignment and brain-storm with your associates, you must ensure that your submission is your own individual work.</p>
+    <ul>
+        <li>Share ideas, not code!</li>
+        <li>An impeccable standard of academic integrity is required. Breaches of academic integrity, including plagiarism or any other action taken to subvert, circumvent, or distort the assessment process, will not be tolerated. QUT policy regarding academic conduct is available in the QUT MOPP Section C/5.3 Academic Integrity. In particular, under the provisions of MOPP statement C/5.3.7, Part (e), we reserve the right to require you to authenticate your learning. You may be required to show evidence of materials used in the production of the assignment such as notes, drafts, sketches or historical backups. You may also be required to undertake a viva or complete a supervised practical exercise.</li>
+        <li>Do not post your solution in any form of publicly accessible online repository or file sharing service, or allow anybody else to obtain access to your solution in any way. Doing so will be classified as academic misconduct under the clauses pertaining to collusion, especially in the event that a copy of your source code obtained from such a service is submitted by another student, regardless of whether this has occurred without your knowledge and permission.</li>
+        <li>Abundant code samples, demonstrations, and exercises have been made available to support your effort toward this programming task. Written permission must be obtained from the Unit Coordinator if you want to use technology other than the libraries supplied this semester to implement your application. Permission will only be granted if there are compelling special circumstances that make it impossible for you to use the libraries supplied this semester. </li>
+    </ul>
+    <p>Breaching any of the foregoing conditions will result in an immediate and final score of 0 for the Assignment.</p>
+    <h2><strong>Notes:</strong></h2>
+    <ul>
+        <li>
+            <p>For purposes of AMS assessment, this activity has been classified as non-assessed. This does not mean the assignment is non-assessable – it means that the system is not able to assess the assignment automatically. AMS will not enforce a hard close-down for submissions, however in line with QUT policy, late submissions without an approved extension will not be marked. If special circumstances prevent you from meeting the assessment due date, you can <a href="https://www.student.qut.edu.au/studying/assessment/late-assignments-and-extensions">apply for an extension</a> <em>before the due date</em>. If you don’t have an approved extension you should submit the work you have completed by the due date and it will be marked against the assessment criteria.</p>
+        </li>
+        <!-- <li>
+            <p>
+                If your solution consists of a single C source file, you may either paste the contents into the text area provided below, or use the &ldquo;Attach file&rdquo; button to load your file into a new text area.
+
+
+            </p>
+        </li>
+        <li>
+            <p>
+                If your solution consists of multiple C source files and header files, as indicated by a suffix of <code>*.c</code> or <code>*.h</code>, use &ldquo;Attach file&rdquo; once for each file.
+
+
+            </p>
+        </li>
+        <li>
+                    </li> -->
+        <li>
+            <p>
+                Attach only one version of your program in any single submission.
+            </p>
+        </li>
+        <li>
+            <p>
+                When you have attached the required file, press the “Submit” button.
+            </p>
+        </li>
+        <li>
+            <p>Source files for each submission will be placed in a single distinct folder on the server, and compiled with the following command:</p>
+            <pre>avr-gcc \
+	*.c \
+	-mmcu=atmega328P \
+	-Os \
+	-DF_CPU=16000000UL \
+	-std=gnu99 \
+	-Wl,-u,vfprintf \
+	-Wl,-gc-sections \
+	-funsigned-char \
+	-funsigned-bitfields \
+	-ffunction-sections \
+	-fpack-struct \
+	-fshort-enums \
+	-Wall \
+	-Wno-strict-aliasing \
+	-lm \
+	-o n10599070.obj
+avr-objcopy -O ihex n10599070.obj n10599070.hex
+</pre>
+
+        </li>
+        <li>
+            <p>If compilation is successful, AMS will verify that your program has compiled successfully and return. Your program will <em>not</em> be executed because there is no meaningful test that can be performed automatically on a program such as this.</p>
+        </li>
+        <li>
+            <p>The transcript will contain a copy of the compiled <code>.hex</code> file. You can paste this into a text document (using notepad++ or a Linux-compatible text editor) and save it as a <code>*.hex</code> file for local testing.</p>
+        </li>
+    </ul>
+    <!--
+<div style="border: 1px dashed;">
+<p>
+<strong>If using USB Serial and/or the cab202 ADC library in your assignment, upload usb_serial.c, usb_serial.h, cab202_adc.c, cab202_adc.h, and reference them with
+<pre>#include "usb_serial.h"
+#include "cab202_adc.h"</pre>
+</strong>
+</p>
+</div>
+-->
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+			<hr>
+			<footer>
+				<p>© 2020 - Queensland University of Technology</p>
+			</footer>
+		</div>
+
+	</form>
+
+
+</body></html>
